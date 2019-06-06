@@ -1,0 +1,37 @@
+.Intro {
+    margin: 0 auto;
+    width: 40rem;
+    height: 5rem;
+    margin-top: 40vh;
+    position: relative;
+    perspective: 50rem;
+    &__side {
+        width: inherit;
+        height: inherit;
+        position: absolute;
+        transition: all .5s;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        &--front {
+            // code here.
+            background-color: inherit;
+        }
+        &--back {
+            transform: rotateY(180deg);
+        }
+    }
+    &:hover{
+        cursor: pointer;
+    }
+    &:hover &__side--front {
+        transform: rotateY(-180deg);
+    }
+    &:hover &__side--back {
+        transform: rotateY(0);
+    }
+    img {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+    }
+}
