@@ -1,11 +1,14 @@
 .Intro {
     margin: 0 auto;
-    width: 40rem;
+    width: 35rem;
     height: 5rem;
     margin-top: 40vh;
     position: relative;
     perspective: 50rem;
     max-width: 100%;
+    @media only screen and (min-width: 481px){ 
+        width: 42rem;
+    }
     &__side {
         width: inherit;
         height: inherit;
@@ -33,6 +36,6 @@
     img {
         display: block;
         margin: 0 auto;
-        max-width: 95%;
+        max-width: 96%;
     }
 }

@@ -6,13 +6,11 @@ const Intro = () => {
     return (
         <div className="Intro">
             <div className="Intro__side Intro__side--front">
-                <img src={Intrologo}/>
+                <img alt="" src={Intrologo}/>
             </div>
             <div className="Intro__side Intro__side--back">
-                <img src={IntroConstruction}/>
+                <img alt="" src={IntroConstruction}/>
             </div>
- 
-
         </div>
     );
 };
