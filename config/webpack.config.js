@@ -433,7 +433,6 @@ module.exports = function(webpackEnv) {
                   },
                 },
               ],
-             
             },
             // Opt-in support for SASS (using .scss or .sass extensions).
             // By default we support SASS Modules with the
