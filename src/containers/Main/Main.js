@@ -8,6 +8,7 @@ class Main extends Component {
             <div className="Main">
 
                 <Intro/>
+                <span>Coming Soon</span>
             </div>
         );
     }

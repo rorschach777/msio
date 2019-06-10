@@ -2,7 +2,16 @@ body {
     background-color:#232323;
 }
 .Main {
-    height: 100vh;
+
+    max-height: 100%;
     // padding: 15px;
     box-sizing: border-box;
+    span {
+        font-size: 1.4rem;
+        text-align: center;
+        color: #ddd;
+        display: block;
+        margin: 1rem auto;
+        text-transform: uppercase;
+    }
 }
