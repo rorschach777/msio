@@ -1,0 +1,68 @@
+
+.Input {
+    float: left;
+    // clear: none;
+    &__error-message{
+        font-size: 1.2rem;
+        color: $color-ios-red;
+      
+
+     
+    }
+
+    input {
+        @include center-block;
+        @include transition;
+        background-color: $color-gray-2;
+        border-radius: $border-radius-md;
+        box-sizing: border-box;
+        padding: .8rem 1rem;
+        color: $color-gray-7;
+        font-size: 1.3rem;
+        border: none;
+        width: 100%;
+        margin: .5rem 0 .5rem 0 ;
+        outline: none;
+        &:focus{
+            transform: scale(1.03);
+            outline: none;
+            background-color: $color-gray-2;
+     
+        }
+        &:valid{
+            outline: none;
+            background-color: $color-gray-1;
+        }
+        &::placeholder{
+            color: $color-gray-5;
+        }
+      
+    }
+    .valid {
+        background-color: $color-gray-1;
+        border: 1px solid $color-gray-2;
+        color: $color-gray-7;
+    }
+    .invalid{
+        background-color: $color-gray-1;
+        border: solid 1px $color-ios-red;
+        &::placeholder{
+            color: $color-ios-red !important;  
+        }
+    
+    }
+ 
+
+}
+
+
+
+.input-layout--half {
+    width: 48% !important;
+    margin-right: 2% !important;
+
+}
+.input-layout--full{
+    width: 98% !important;
+    margin-right: 0px;
+}

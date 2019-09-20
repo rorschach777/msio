@@ -1,0 +1,13 @@
+.IntroFull{
+    position: relative;
+    top: 25vh;
+    .Logo{
+        width: 8rem;
+        @include center-block(1.5rem);
+    }
+    @include center-block;
+    h1{
+        margin: 1.5rem 0;
+    }
+    text-align: center;
+}

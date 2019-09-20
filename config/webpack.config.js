@@ -430,6 +430,7 @@ module.exports = function(webpackEnv) {
                   options: {
                     // Provide path to the file with resources
                     resources: './src/assets/styles/_utils.scss',
+                    
                   },
                 },
               ],

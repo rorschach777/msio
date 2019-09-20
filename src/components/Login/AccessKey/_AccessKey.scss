@@ -1,0 +1,28 @@
+.AccessKey {
+    &__header{
+        width: 100%;
+        margin-bottom: 1.5rem;
+
+        h1{
+            @include center-block;
+            font-size: inherit;
+            text-align: center;
+            position: relative;
+            width: 25rem;
+        
+            span{
+                position: absolute;
+                top: 0rem;
+                left: 0rem;
+                color: $color-2;
+            }
+         
+        }
+     
+    }
+ 
+    h6{
+        color: $color-2;
+        text-align: center;
+    }
+}

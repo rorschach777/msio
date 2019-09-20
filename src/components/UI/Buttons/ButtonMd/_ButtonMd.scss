@@ -1,0 +1,14 @@
+.ButtonMd{
+    @include center-block(2rem);
+    &:hover{
+        @include hover-up;
+    }
+   transition: .2s;
+    padding: .8rem;
+    color: $color-gray-5;
+    border-radius: 25rem;
+    border: none;
+    min-width: 17rem;
+    font-size: 1.6rem;
+
+}

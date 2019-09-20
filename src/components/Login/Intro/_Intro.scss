@@ -1,0 +1,8 @@
+.Intro {
+    text-align: center;
+    .LogoCoral{
+        @include center-block(1.5rem);
+        width: 8rem;
+
+    }
+}

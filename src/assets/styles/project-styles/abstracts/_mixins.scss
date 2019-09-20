@@ -1,0 +1,64 @@
+@mixin background-base{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    overflow: hidden;
+    min-height: 100%;
+ 
+    background-size: cover;
+    overflow: hidden;
+    z-index: -8;
+
+}
+@mixin button-base{
+    border: none;
+    border-radius: .5rem;
+
+}
+@mixin hover-up ($distance: .5rem){
+    transform: translateY(-$distance);
+}
+@mixin margin-element ($distance: 1.5rem){
+    margin: $distance auto;
+}
+@mixin box-padding($padding: 1.5rem){
+    padding: $padding;
+    box-sizing: border-box;
+
+}
+@mixin transition {
+    transition: all .2s;
+}
+@mixin no-margin{
+    margin: 0px;
+} 
+@mixin row($padding : 25rem){
+    width: 100%;
+    padding: $padding 0;
+    box-sizing: border-box;
+}
+
+@mixin columns($col-lg, $col-md, $col-sm, $grid-type){
+    @media only screen and (min-width: calc(#{$tablet+1})) { 
+        @include grid-column($col-lg, $grid-type); 
+    }
+    @media only screen and (min-width: calc(#{$phone+1})) and (max-width: $tablet){ 
+        @include grid-column($col-md, $grid-type); 
+    }
+    @media only screen and (min-width: 0px) and (max-width: $phone){ 
+        @include grid-column($col-sm, $grid-type); 
+    }
+}
+@mixin full-mobile{
+    @media only screen and (max-width: $phone){
+        @include grid-column(12, $grid-standard); 
+     }
+}
+@mixin gradient($main : $color-5, $secondary: $color-2){
+    background: linear-gradient(to right, $main 0%, $main 55%,  $secondary 100%)
+}
+@mixin row($padding : 5rem) {
+    padding: $padding 0;
+}

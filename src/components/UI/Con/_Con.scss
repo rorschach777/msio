@@ -1,0 +1,16 @@
+
+.Con{
+
+    @include grid-container;
+    @include center-block;
+    @include box-padding;
+    position: relative;
+    z-index: 1;
+    height: auto; 
+    overflow: hidden;
+    top: 1.5rem;
+    width: $container-width;
+    max-width: 100%;
+    clear: none;
+    box-sizing: border-box;
+}
