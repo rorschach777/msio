@@ -1,0 +1,11 @@
+.Con1080 {
+    @include center-block;
+    @include box-padding;
+    max-width: 100%;
+    width: 108rem;
+    margin-top: 5rem;
+    // @include grid-visual;
+    @media only screen and (max-width: $tablet){ 
+        margin-top: 8rem;
+    }
+}

@@ -1,0 +1,112 @@
+.Skills{
+    color: $color-white;
+    h1{
+        color: $color-2 !important;
+        line-height: inherit;
+        margin: 0px;
+    }
+
+    &--row{
+        @include row(2.5rem);
+    }
+    &__l{
+        @include box-padding(1.5rem);
+        @include columns(6,12,12,$grid-standard);
+    
+
+        h3 {
+            color: inherit;
+        }
+        img {
+            @include center-block(2.5rem);
+        }
+        &__top{
+            height: auto;
+            overflow: hidden;
+            clear: both;
+            &__l{
+                // project styles mixins
+                @include columns(6,12,12,$grid-standard);
+            }
+            &__r{
+                // project styles mixins
+                @include columns(6,12,12,$grid-standard);
+            }
+        }
+        &__bottom{
+            height: 35rem;
+        }
+
+    }
+    &__r{
+       h3 {
+           color: inherit;
+       }
+       @include columns(6,12,12, $grid-standard);
+
+    }
+}
+
+.skill {
+    position: relative;
+    height: 4.7rem;
+    margin-top: 2.2rem;
+    transition: all .2s;
+    & > div{
+        @include gradient;
+        height: 1rem;
+        border-radius: .5rem;
+        margin: 1rem 0;
+        display: inline-block;
+      
+    }
+
+     &--99{
+         width: 90%;
+     }
+     &--95{
+         width: 87%;
+     }
+     &--92{
+         width: 85%;
+     }
+     &--90{
+         width: 82%;
+     }
+     &--85{
+         width: 78%;
+     }
+     &--80{
+         width: 75%;
+     }
+}
+ .skill > span {
+    position: absolute;
+ }
+ .skill__label {
+     text-transform: unset !important;
+    text-align: left !important;
+    margin-bottom: 1rem !important;
+    font-size: 1.4rem !important;
+    top: -2.5rem;
+ }
+.skill__percentage {
+    display: inline-block; 
+    font-size: 1.7rem;
+    position: absolute;
+    top: -.5rem;
+    right: 0;
+
+ }
+
+ .jsIcon{
+     width: 15rem;
+     display: block;
+     margin: 15rem;
+     padding: 1.5rem;
+     position: relative;
+     top: -3.5rem; 
+     box-sizing: border-box;
+     float: left;
+ 
+ }

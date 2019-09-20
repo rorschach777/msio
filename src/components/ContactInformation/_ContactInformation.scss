@@ -1,0 +1,25 @@
+.ContactInformation {
+    @include center-block;
+
+    position: relative;
+    top: 10rem;
+    height: 20rem;
+    width: 100%;
+    margin-bottom: 5rem;
+    img {
+        @include center-block;
+        width: 13rem;
+        margin-bottom: 0 !important;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+        margin: 1.5rem 0;
+        color: $color-white;
+    }
+
+    @media only screen and (max-width: $tablet) {
+        top: 0;
+        margin: 1.5rem 0;
+    }
+}

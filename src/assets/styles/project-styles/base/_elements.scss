@@ -1,0 +1,26 @@
+hr{
+    border: solid 1px $color-gray-7;
+}
+ul li {
+    color: $color-gray-3;
+    ul li {
+        list-style: disc;
+        margin-left: -1.5rem;
+    }
+}
+.uk-modal-body{
+    & > p{
+        color: $color-gray-7;
+        margin: 1.5rem 0;
+    }
+}
+a {
+    text-decoration: none;
+    &:hover{
+        text-decoration: none;   
+    }
+}
+.uk-button{
+    border-radius: .5rem;
+    font-size: 1.3rem;
+}

@@ -1,0 +1,15 @@
+.Login{
+    height: 100%;
+    z-index: 1000;
+    position: relative;
+    top:30vh;
+
+    img {
+        @include center-block;
+        width:45rem;
+    }
+    input {
+        @include center-block(1.5rem);
+        width: 50%;
+    }
+}

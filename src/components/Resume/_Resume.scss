@@ -1,0 +1,32 @@
+.Resume{
+    height: auto;
+    overflow: hidden;
+    // padding: 2rem 0;
+    h3, h5, h6{
+        color: $color-white;
+    }
+    h4 {
+        color: $color-2;
+    }
+    p{
+        margin-bottom: 1rem;
+    }
+    section{
+        margin: 2.5rem 0;
+    }
+
+    &__left{
+        @include box-padding;
+        @include columns(5,12,12,$grid-standard)
+
+    }
+    &__right{
+        @include box-padding;
+        padding-left: 2.5rem;
+           @include columns(7,12,12,$grid-standard)
+        ul {
+            margin-left: -2.5rem;
+        }
+   
+    }
+}

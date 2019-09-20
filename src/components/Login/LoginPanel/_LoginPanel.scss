@@ -1,0 +1,17 @@
+.LoginPanel{
+    @include box-padding;
+    @include center-block(30vh);
+    background-color: $color-white;
+    border-radius: $border-radius-sm;
+    width: 45rem;
+    height: auto;
+    overflow: hidden;
+    h1{
+        font-size: 3rem !important;
+
+    }
+    @media only screen and (max-width: $phone){
+        max-width: calc(100% - 3rem);
+       
+    }
+}

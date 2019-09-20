@@ -1,0 +1,17 @@
+.ButtonLg{
+    @include center-block(1.5rem);
+
+    transition: .2s;
+    padding: 1rem;
+    background-color: $color-2;
+    color: $color-gray-1;
+    border-radius: $border-radius-sm;
+    border: none;
+    min-width: 17rem;
+    font-size: 1.6rem;
+    height: auto;
+
+    &:hover{
+        @include hover-up;
+    }
+}

@@ -1,11 +1,18 @@
-body {
-    background-color:#232323;
+
+.App{
+position: relative;
 }
 .Main {
-
-    max-height: 100%;
+    position: relative;
+    height: auto;
+    overflow: hidden;
+    height: auto;
+    min-height: 100vh;
+    overflow: hidden;
     // padding: 15px;
     box-sizing: border-box;
+    transition: all .5s;
+    animation-name: bkgHideSolid;
     span {
         font-size: 1.4rem;
         text-align: center;
@@ -13,5 +20,57 @@ body {
         display: block;
         margin: 1rem auto;
         text-transform: uppercase;
+    }
+    &:before{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        content: '';
+        left: 0;
+        top: 0;
+        background-color: $color-4;
+
+        animation-name: inherit;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+
+        
+        animation-iteration-count: 1;
+        -webkit-animation-name: inherit;
+        -webkit-animation-duration:1s;
+
+    }
+    & > div {
+        position: relative;
+        z-index: 1;
+    }
+    &:after{
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: ' ';
+        width: 100%;
+        height: 100%;
+        background-image: url('../../assets/images/background-1.jpg');
+        background-size: cover;
+        z-index: -8;
+        // TODO - Add -webkit
+    }
+}
+
+@keyframes bkgShowSolid{
+    0%{
+        opacity: .25;
+    }
+    100%{
+        opacity: .95;
+    }
+}
+@keyframes bkgHideSolid{
+    0%{
+        opacity: .95;
+    }
+    100%{
+        opacity: .25;
     }
 }

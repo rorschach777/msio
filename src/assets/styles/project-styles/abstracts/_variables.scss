@@ -1,4 +1,17 @@
-$color-1: #232323;
+$color-1: #2B2B39;
+$color-2: #eb0088;
+$color-3: #FF5E7F;
+$color-4: #232323;
+$color-5: #B055CC;
 
 
 $font-main: 'Exo';
+$font-secondary: 'Roboto';
+
+$container-width: 120rem;
+
+
+$border-radius-sm: .5rem;
+$border-radius-md: calc(#{$border-radius-sm} * 2);
+$border-radius-lg: calc(#{$border-radius-sm} * 2.5);
+$border-radius-xl: calc(#{$border-radius-sm} * 5);
