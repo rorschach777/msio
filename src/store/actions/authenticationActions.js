@@ -4,8 +4,18 @@ import axiosFBInstance from '../../axios/axios';
 import axios from 'axios';
 import {setUser, logoutTimer} from '../actions/mainActions';
 import {checkElementValidity} from '../../validation/validation';
+import axiosFB from '../../axios/axios';
 
+const fbKey = () => {
+   
+    let key =  axiosFB.get('/fbKey')
+    .then((keyStr)=>{
+       let key = keyStr.data
 
+        return key
+    })
+    return key
+}
 
 
 export const auth = (e, authState) => {
@@ -202,10 +212,11 @@ const signUp = (userEmailPass, authState) => {
     let proposedAccessKey = authState.authForm.accessKey.value
     let urlModifier
     let loginId = proposedAccessKey.split('_')
+    let key = fbKey()
     loginId = loginId.pop().toString();
     urlModifier = 'signUp'
    
-    axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:${urlModifier}?key=AIzaSyDVoTg38lYPbyUU6NwuNIFFDIYnC04m8y4`, userEmailPass)
+    axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:${urlModifier}?key=${key}`, userEmailPass)
         // get the user id
         .then(response => {
             let userId = response.data.localId
@@ -264,7 +275,8 @@ const signUpSuccess = (val)=>{
 const signIn = (e, userEmailPass, authState) => {
     return dispatch => {
         let urlModifier = 'signInWithPassword'
-        axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:${urlModifier}?key=AIzaSyDVoTg38lYPbyUU6NwuNIFFDIYnC04m8y4`, userEmailPass)
+        let key = fbKey()
+        axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:${urlModifier}?key=${key}`, userEmailPass)
             .then(response => {
                 // ONLY on Sign In 
                 // looking to set the app up for the user based on id.
