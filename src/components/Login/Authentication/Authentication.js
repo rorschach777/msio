@@ -4,56 +4,68 @@ import Input from '../../UI/Input/Input';
 import ButtonLg from '../../UI/Buttons/ButtonLg/ButtonLg';
 import Aux from '../../Hoc/Aux/Aux';
 import { NavLink } from 'react-router-dom';
+const formElements = () => {
+    
+}
 const Authentication = (props) => {
     const formElementsArr = [];
+  
+    // let formKeys = Object.keys(props.authForm)
+    // let formVals = Object.values(props.authForm)
+
+    // formKeys.forEach((cur, idx)=>{
+    //     formElementsArr.push({
+    //         id: cur,
+    //         config: formVals[idx]
+    //     })
+    // })
+
     for (let key in props.authForm) {
         formElementsArr.push({
             id: key,
             config: props.authForm[key]
         })
-
     }
-
     // TODO: NEED TO ADD A PANEL... IF YOU HAVE ALREADY SIGNED UP, Show a panel that says you have already signed up. 
     const authenticationTypeFields = () => {
         // {props.setAuthMethodButtons()}
         return (
-                formElementsArr.map((cur, idx) => {
-                    if (props.signUp && cur.config.inputConfig.signUpVisible){
-                        return (
-                            <Input
-                                id={cur.id}
-                                key={cur.id}
-                                label={cur.config.inputConfig.label}
-                                layout={cur.config.inputConfig.fieldLayoutClass}
-                                errorMessage={cur.config.inputConfig.errorMessage}
-                                errorVisible={cur.config.inputConfig.errorVisible}
-                                isValid={cur.config.isValid}
-                                placeholder={cur.config.placeholder}
-                                onChange={props.onChange}
-                                data={props.rdxAuthState}
-    
-                            />
-                        )
-                    }
-                    else if (cur.config.inputConfig.signInVisible){
-                        return (
-                            <Input
-                                id={cur.id}
-                                key={cur.id}
-                                label={cur.config.inputConfig.label}
-                                layout={cur.config.inputConfig.fieldLayoutClass}
-                                errorMessage={cur.config.inputConfig.errorMessage}
-                                errorVisible={cur.config.inputConfig.errorVisible}
-                                isValid={cur.config.isValid}
-                                placeholder={cur.config.placeholder}
-                                onChange={props.onChange}
-                                data={props.rdxAuthState}
-                            />
-                        )
-                    }
-                })
+            formElementsArr.map((cur, idx) => {
+                if (props.signUp && cur.config.inputConfig.signUpVisible){
+                    return (
+                        <Input
+                            id={cur.id}
+                            key={cur.config.order}
+                            label={cur.config.inputConfig.label}
+                            layout={cur.config.inputConfig.fieldLayoutClass}
+                            errorMessage={cur.config.inputConfig.errorMessage}
+                            errorVisible={cur.config.inputConfig.errorVisible}
+                            isvalid={cur.config.isValid}
+                            placeholder={cur.config.placeholder}
+                            onChange={props.onChange}
+                            data={props.rdxAuthState}
+                        />
+                    )
+                }
+                else if (cur.config.inputConfig.signInVisible){
+                    return (
+                        <Input
+                            id={cur.id}
+                            key={cur.config.order}
+                            label={cur.config.inputConfig.label}
+                            layout={cur.config.inputConfig.fieldLayoutClass}
+                            errorMessage={cur.config.inputConfig.errorMessage}
+                            errorVisible={cur.config.inputConfig.errorVisible}
+                            isvalid={cur.config.isValid}
+                            placeholder={cur.config.placeholder}
+                            onChange={props.onChange}
+                            data={props.rdxAuthState}
+                        />
+                    )
+                }
+            })
         )
+     
     }
     const authenticate = () => {
         // LOGGED IN, NO ERRORS - WELCOME
@@ -86,7 +98,6 @@ const Authentication = (props) => {
                         {authenticationTypeFields() }
            
                     </div>
-                  
                   
                     {props.formValid ? <ButtonLg click={(e) => props.submit(e, props.rdxAuthState)} text={props.signIn ? 'Sign In' : 'Sign Up'} /> : null}
                     {props.signUp ? <h6 id="access-key-tool-tip" uk-tooltip="title: To use this part of the site, you should have recieved an access key that is required to sign up.; pos: bottom-center">Access Key?</h6> : null}

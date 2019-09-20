@@ -118,14 +118,13 @@ const Skills = (props) => {
                 </div>
 
                 <div className="row">
-                    
                     <h3>Microsoft 70-480</h3>
                     <p>
                     Several of my friends work in the web development field, and have been required to take this exam for compliance purposes. I took this exam more as a way to gauge my own strengths and weaknesses. As expected my strengths reside more in CSS3 and implementing program flow. I look forward to learning more about working with data structures, and data security
                 </p><br/>
           
                     <div  className="skill">
-                        <span className="skill__label">Implementing &amp; Manipulating Document Structures &amp; Objects</span>
+                        <span className="skill__label">Implementing &amp; Manipulating DOM Structures</span>
                         <Skill pose={!props.loadProgress ? 'start' : 'finish'}  propVal={'88%'}className="skill--92"></Skill>
                         <span className="skill__percentage">92%</span>
                     </div>

@@ -14,10 +14,12 @@ class AuthenticationCon extends Component {
     componentDidMount(){
         this.props.rdxGetAccessKeys()
     }
+  
     // componentWillUnmount(){
     //     this.props.rdxAuthReset()
     // }
     render() {
+    
         return (
             <div>
                 <Authentication

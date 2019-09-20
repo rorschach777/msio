@@ -1,5 +1,6 @@
 .Skills{
     color: $color-white;
+    padding: 0px;
     h1{
         color: $color-2 !important;
         line-height: inherit;
@@ -10,7 +11,7 @@
         @include row(2.5rem);
     }
     &__l{
-        @include box-padding(1.5rem);
+        // @include box-padding(1.5rem);
         @include columns(6,12,12,$grid-standard);
     
 
@@ -19,6 +20,14 @@
         }
         img {
             @include center-block(2.5rem);
+            @media only screen and (max-width: $tablet){
+                @include center-block();
+                margin-top: 1.5rem;
+                height: auto;
+                overflow: hidden;
+                margin-bottom: 0px;
+
+             }
         }
         &__top{
             height: auto;
@@ -34,7 +43,7 @@
             }
         }
         &__bottom{
-            height: 35rem;
+            min-height: 35rem;
         }
 
     }
@@ -43,6 +52,9 @@
            color: inherit;
        }
        @include columns(6,12,12, $grid-standard);
+       @media only screen and (max-width: $phone){
+        margin-top: 1.5rem;
+        }
 
     }
 }
@@ -89,6 +101,13 @@
     margin-bottom: 1rem !important;
     font-size: 1.4rem !important;
     top: -2.5rem;
+    @media only screen and (max-width: $phone){
+        line-height: 1.6rem;
+        height: 1.6rem;
+        width: 100%;
+        margin-bottom: 1.6rem !important;
+
+     }
  }
 .skill__percentage {
     display: inline-block; 
@@ -108,5 +127,8 @@
      top: -3.5rem; 
      box-sizing: border-box;
      float: left;
+     @media only screen and (max-width: $phone){ 
+        top: 0; 
+     }
  
  }

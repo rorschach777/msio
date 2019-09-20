@@ -7,6 +7,7 @@ const initialState = {
     authForm: {
         firstName: {
             placeholder: 'First Name',
+            order: 1,
             inputConfig: {
                 type: 'text', 
                 fieldLayoutClass: 'input-layout input-layout--half',
@@ -27,6 +28,7 @@ const initialState = {
         },
         lastName: {
             placeholder: 'Last Name',
+            order: 2,
             inputConfig: {
                 type: 'text', 
                 fieldLayoutClass: 'input-layout input-layout--half',
@@ -47,6 +49,7 @@ const initialState = {
         },
         emailAddress: {
             placeholder: 'Email Address',
+            order: 3,
             inputConfig: {
                 type: 'text', 
                 fieldLayoutClass: 'input-layout input-layout--full',
@@ -67,6 +70,7 @@ const initialState = {
         },
         password: {
             placeholder: 'Password',
+            order: 4,
             inputConfig: {
                 type: 'text', 
                 fieldLayoutClass: 'input-layout input-layout--full',
@@ -86,6 +90,7 @@ const initialState = {
         },
         companyName: {
             placeholder: 'Company Name',
+            order: 5, 
             inputConfig: {
                 type: 'text', 
                 fieldLayoutClass: 'input-layout input-layout--half', 
@@ -106,6 +111,7 @@ const initialState = {
         },
         accessKey: {
             placeholder: 'Access Key',
+            order: 6, 
             inputConfig: {
                 type: 'text', 
                 fieldLayoutClass: 'input-layout input-layout--half', 
@@ -162,15 +168,13 @@ const authenticationReducer = (state = initialState, action) => {
         }
         // INPUT UPDATED
         case actionTypes.AUTH_INPUT_UPDATED:
+       
             return{
                 ...state,
                 authForm: {
-                    ...state.authForm,
-                    [action.payload.id]: {
-                        ...action.payload.values
-                    }
+                  ...action.payload.authForm
                 }
-        }
+         }
         // TOTAL VALIDITY
         case actionTypes.AUTH_TOTAL_VALIDITY:
             return{

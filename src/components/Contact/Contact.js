@@ -36,6 +36,7 @@ const Contact = (props) => {
                     <div className="Contact__form__left">
                         <div className="Contact__form__left__info">
                             {contactFormArr.map((cur, idx)=>{
+                           
                                 if (cur.config.inputConfig.type === 'input'){
                                     return (
                                     <Input
@@ -46,7 +47,7 @@ const Contact = (props) => {
                                     layout={cur.config.inputConfig.fieldLayoutClass}
                                     errorMessage={cur.config.inputConfig.errorMessage}
                                     errorVisible={cur.config.inputConfig.errorVisible}
-                                    isValid={cur.config.isValid}
+                                    isvalid={cur.config.isValid}
                                     placeholder={cur.config.placeholder}
                                     onChange={(e)=>props.onChange(e, props.data)}
                                     />
@@ -54,14 +55,14 @@ const Contact = (props) => {
                                 }
                                 else if (cur.config.inputConfig.type === 'text-area'){
                                     return (
-                                        <TextArea
+                                    <TextArea
                                     id={cur.id}
                                     key={cur.id}
                                     data={props.data}
                                     label={cur.config.inputConfig.label}
                                     errorMessage={cur.config.inputConfig.errorMessage}
                                     errorVisible={cur.config.inputConfig.errorVisible}
-                                    isValid={cur.config.isValid}
+                                    isvalid={cur.config.isValid}
                                     placeholder={'Type your message here'}
                                     onChange={(e)=>props.onChange(e, props.data)}
                                     type="text"/>

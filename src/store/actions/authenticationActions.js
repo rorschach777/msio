@@ -44,12 +44,12 @@ const setAccessKeys=(accessKeys)=>{
         }
     }
 }
-const setInput = (inputId, updatedAuthFormElement) => {
+const setInput = (updatedAuthFormElement) => {
     return {
         type: actionTypes.AUTH_INPUT_UPDATED,
         payload:{
-            id: inputId,
-            values: updatedAuthFormElement
+         
+            authForm: updatedAuthFormElement
         } 
     }
 }
@@ -312,13 +312,15 @@ const inputUpdated = (e, authState) => {
             },
             touched: touched
         }
+
         let updatedAuthForm = {
             ...authForm,
             [inputId]: {
                 ...updatedAuthFormElement
             }
         }
-        dispatch(setInput(inputId, updatedAuthFormElement));
+  
+        dispatch(setInput(updatedAuthForm));
         dispatch(checkTotalValidity(updatedAuthForm));
     }
    

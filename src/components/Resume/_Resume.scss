@@ -16,14 +16,14 @@
     }
 
     &__left{
-        @include box-padding;
+        // @include box-padding;
         @include columns(5,12,12,$grid-standard)
 
     }
     &__right{
-        @include box-padding;
+        // @include box-padding;
         padding-left: 2.5rem;
-           @include columns(7,12,12,$grid-standard)
+        @include columns(7,12,12, $grid-standard);
         ul {
             margin-left: -2.5rem;
         }
