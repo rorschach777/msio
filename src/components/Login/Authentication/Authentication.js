@@ -74,10 +74,12 @@ const Authentication = (props) => {
                             <h1>{props.signIn ? 'Sign In' : 'Sign Up'}</h1>
                         </div>
                         <div className="Authentication__header__right">
-                            <ul data-uk-tab>
-                                <li onClick={(e) => props.toggleProp(e, props.authForm,  'signUp')} className={props.signUp ? 'uk-active' : null} ><a id="auth-method-sign-up" href="#">Sign Up</a></li>
-                                <li onClick={(e) => props.toggleProp(e, props.authForm, 'signIn')} className={props.signIn ? 'uk-active' : null}><a id="auth-method-sign-in"   href="#">Sign In</a></li>
-                            </ul>
+                            <div className="Authentication__header__right__con">
+                                <ul data-uk-tab>
+                                    <li onClick={(e) => props.toggleProp(e, props.authForm,  'signUp')} className={props.signUp ? 'uk-active' : null} ><a id="auth-method-sign-up" href="#">Sign Up</a></li>
+                                    <li onClick={(e) => props.toggleProp(e, props.authForm, 'signIn')} className={props.signIn ? 'uk-active' : null}><a id="auth-method-sign-in"   href="#">Sign In</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div className="Authentication__form">

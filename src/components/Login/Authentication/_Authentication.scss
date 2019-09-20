@@ -24,25 +24,34 @@
         overflow: hidden;
         width: 100%;
         &__left{
-            @include columns(6, 6, 12, $grid-standard);
+            @include columns(6, 6, 6, $grid-standard);
         }
         &__right{
-            @include columns(6, 6, 12, $grid-standard);
+            @include columns(6, 6, 6, $grid-standard);
             position: relative;
-            ul {
+            &__con{
                 position: absolute;
                 top: 1rem;
                 width: 85%;
                 height: inherit;
                 right: -2rem;
-                text-align: right !important;
+                  ul {
+                    text-align: right !important;
+                    li{
+                        @media only screen and (max-width: $phone){
+                            padding-left: 10px;
+                         }
+                    }
+               
+                }
             }
+         
         }
     }
     &__form{
         width: 100%;
         height: auto;
-        padding: 0 1.5rem;
+        padding: 0 .5rem;
         overflow: hidden;
         box-sizing: border-box;
   
