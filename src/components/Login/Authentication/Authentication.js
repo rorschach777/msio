@@ -102,7 +102,7 @@ const Authentication = (props) => {
            
                     </div>
                   
-                    {props.formValid ? <ButtonLg click={(e) => props.submit(e, props.rdxAuthState)} text={props.signIn ? 'Sign In' : 'Sign Up'} /> : null}
+                    {props.formValid ? <ButtonLg id={'login-btn'} click={(e) => props.submit(e, props.rdxAuthState)} text={props.signIn ? 'Sign In' : 'Sign Up'} /> : null}
                     {props.signUp ? <h6 id="access-key-tool-tip" uk-tooltip="title: To use this part of the site, you should have recieved an access key that is required to sign up.; pos: bottom-center">Access Key?</h6> : null}
                 </Aux>
             )
