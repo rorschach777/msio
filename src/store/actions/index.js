@@ -8,6 +8,7 @@ export {
 } from './mainActions';
 export {
     auth,
+    createFormArr,
     getAccessKeys, 
     toggleAuthType,
     sendAuthForm,

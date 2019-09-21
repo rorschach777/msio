@@ -8,7 +8,7 @@ const formElements = () => {
     
 }
 const Authentication = (props) => {
-    const formElementsArr = [];
+    let formElementsArr = [];
   
     // let formKeys = Object.keys(props.authForm)
     // let formVals = Object.values(props.authForm)
@@ -29,13 +29,16 @@ const Authentication = (props) => {
     // TODO: NEED TO ADD A PANEL... IF YOU HAVE ALREADY SIGNED UP, Show a panel that says you have already signed up. 
     const authenticationTypeFields = () => {
         // {props.setAuthMethodButtons()}
+        formElementsArr.sort((a, b)=>{
+            return a.config.order - b.config.order
+        })
         return (
             formElementsArr.map((cur, idx) => {
                 if (props.signUp && cur.config.inputConfig.signUpVisible){
                     return (
                         <Input
                             id={cur.id}
-                            key={cur.config.order}
+                            key={idx}
                             label={cur.config.inputConfig.label}
                             layout={cur.config.inputConfig.fieldLayoutClass}
                             errorMessage={cur.config.inputConfig.errorMessage}

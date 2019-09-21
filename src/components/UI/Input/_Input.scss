@@ -24,7 +24,7 @@
         margin: .5rem 0 .5rem 0 ;
         outline: none;
         &:focus{
-            transform: scale(1.03);
+            transform: scaleY(1.03) translateX(.3rem);
             outline: none;
             background-color: $color-gray-2;
      

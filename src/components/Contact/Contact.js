@@ -24,9 +24,17 @@ const Contact = (props) => {
             }
         )
     }
+
     const contactBody = () => {
+        contactFormArr.sort((a, b)=>{
+            return a.config.order - b.config.order
+        })
+        console.log(props.formSubmitted)
         if (props.formSubmitted) {
-            contactDialog()
+            return (
+                contactDialog()
+            )
+     
         }
         else {
             return (
@@ -114,16 +122,10 @@ const Contact = (props) => {
         )
     }                   
   
-     
-      
-      
-    
-
     return (
         <Con1080>
             <div className="Contact">
                 {props.coverLetter.loaded ? contactBody() : <Spinner/>}
-               {/* {props.formSubmitted ? contactDialog() : contactBody() } */}
             </div>
      
         </Con1080>

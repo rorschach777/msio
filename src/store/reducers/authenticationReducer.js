@@ -3,7 +3,7 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
     accessKeys: [],
     accessKeyValid: false,
-
+    formElementsArr: [],
     authForm: {
         firstName: {
             placeholder: 'First Name',
@@ -149,6 +149,11 @@ const initialState = {
 const authenticationReducer = (state = initialState, action) => {
     switch(action.type){
         // GET ACCESS KEY
+        case actionTypes.AUTH_CREATE_FORMARR:
+         return{
+            ...state,
+            formElementsArr: [...action.payload.formElementsArr]
+        }
         case actionTypes.AUTH_GET_ACCESSKEYS:
         return{
             ...state, 
@@ -172,7 +177,12 @@ const authenticationReducer = (state = initialState, action) => {
             return{
                 ...state,
                 authForm: {
-                  ...action.payload.authForm
+                  ...state.authForm,
+               
+                  [action.payload.id]: {
+                      ...state.authForm[action.payload.id],
+                      ...action.payload.updatedAuthFormElement
+                  }
                 }
          }
         // TOTAL VALIDITY

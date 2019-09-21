@@ -11,13 +11,12 @@ class AuthenticationCon extends Component {
             [property]: false
         }), this.showState)
     }
+    
     componentDidMount(){
-        this.props.rdxGetAccessKeys()
+        this.props.rdxGetAccessKeys();
+        // this.props.rdxCreateFormArr(this.props.rdxAuthState.authForm)
     }
-  
-    // componentWillUnmount(){
-    //     this.props.rdxAuthReset()
-    // }
+
     render() {
     
         return (
@@ -30,6 +29,7 @@ class AuthenticationCon extends Component {
                     rdxAuthState={this.props.rdxAuthState}
                     onChange={this.props.rdxAuth}
                     authForm={this.props.rdxAuthFormObj}
+                    // formElementsArr={this.props.rdxFormElementsArr}
                     submit={this.props.sendAuthForm}
                     signIn={this.props.rdxSignIn}
                     signInError={this.props.rdxSignInError}
@@ -50,6 +50,7 @@ class AuthenticationCon extends Component {
 const mapStateToProps = state => {
     return {
         rdxAuthState: state.authentication,
+        rdxFormElementsArr: state.authentication.formElementsArr,
         rdxAuthFormObj: state.authentication.authForm,
         rdxAccessKeyValid: state.authentication.accessKeyValid,
         rdxSignUp: state.authentication.signUp,
@@ -65,6 +66,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         rdxAuth: (e, authFormState)=>dispatch(reduxActions.auth(e, authFormState)),
+        rdxCreateFormArr: (authForm)=>dispatch(reduxActions.createFormArr(authForm)),
         rdxToggleAuthType: (e, authForm, prop)=>dispatch(reduxActions.toggleAuthType(e, authForm, prop)),
         rdxGetAccessKeys: (authForm)=>dispatch(reduxActions.getAccessKeys(authForm)),
         sendAuthForm: (e, authState) => dispatch(reduxActions.sendAuthForm(e, authState)),

@@ -6,9 +6,9 @@ const TextArea = (props) => {
         <div className="TextArea">
             <label id={`${props.id}-name-label`}>{props.label}</label>
             <textarea 
-                className={props.isValid ? 'valid' : ''}
+                className={props.isvalid ? 'valid' : ''}
                 placeholder={props.placeholder}
-                isValid={props.isValid}
+                isvalid={props.isvalid}
                 id={props.id}
                 type={props.type}
                 onChange={(e)=>props.onChange(e, props.data)}

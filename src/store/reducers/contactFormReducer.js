@@ -3,6 +3,7 @@ const initialState = {
     form: {
         firstName: {
             placeholder: 'First Name',
+            order: 1,
             inputConfig: {
                 type: 'input', 
                 fieldLayoutClass: 'input-layout input-layout--half',
@@ -21,6 +22,7 @@ const initialState = {
         },
         lastName: {
             placeholder: 'Last Name',
+            order: 2,
             inputConfig: {
                 type: 'input', 
                 fieldLayoutClass: 'input-layout input-layout--half',
@@ -39,6 +41,7 @@ const initialState = {
         },
         emailAddress: {
             placeholder: 'Best Email Address',
+            order: 3,
             inputConfig: {
                 type: 'input', 
                 fieldLayoutClass: 'input-layout input-layout--half',
@@ -57,6 +60,7 @@ const initialState = {
         },
         phoneNumber: {
             placeholder: 'Phone Number',
+            order: 4,
             inputConfig: {
                 type: 'input', 
                 fieldLayoutClass: 'input-layout input-layout--half',
@@ -76,6 +80,7 @@ const initialState = {
         },
         subjectLine: {
             placeholder: 'Subject Line',
+            order: 5,
             inputConfig: {
                 type: 'input', 
                 fieldLayoutClass: 'input-layout input-layout--full',
@@ -94,6 +99,7 @@ const initialState = {
         },
         message: {
             placeholder: 'Your Message',
+            order: 6,
             inputConfig: {
                 type: 'text-area', 
                 fieldLayoutClass: 'input-layout input-layout--half', 

@@ -22,11 +22,14 @@
     }
     &__right{
         // @include box-padding;
-        padding-left: 2.5rem;
+        
         @include columns(7,12,12, $grid-standard);
         ul {
             margin-left: -2.5rem;
         }
+        @media only screen and (max-width: $phone){
+             padding-left: 2.5rem;
+         }
    
     }
 }

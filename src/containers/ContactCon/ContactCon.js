@@ -6,14 +6,7 @@ class ContactCon extends Component {
     componentDidMount(){
         this.props.coverLetterLoad(this.props.mainState.userInfo.accessKey)
     }
-    shouldComponentUpdate(nextProps, nextState){
-        if (this.props !== nextProps){
-            return true
-        }
-        else {
-            return false
-        }
-    }
+ 
     render() {
         return (
             <div className="ContactCon">
