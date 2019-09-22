@@ -8,7 +8,7 @@ import Aux from '../../components/Hoc/Aux/Aux';
 import Spinner from '../UI/Spinner/Spinner';
 const CoverLetter = (props) => {
     // let job = props.jobsData[1]
-    const baseImgDir = `${contentBucket}/comp`;
+    const baseImgDir = `${contentBucket}/company`;
     const key = props.userInfo.accessKey.split('_')
     const imgName = `${key[key.length - 1]}.png`.toLowerCase();
     const additionalContent = () => {
@@ -35,8 +35,8 @@ const CoverLetter = (props) => {
             return (
             <p>
                 {props.data.jobs.appliedDate},<br /><br />
-                Dear&nbsp;
-             
+                Dear&nbsp; {props.userInfo.firstName}&nbsp;{props.userInfo.firstName},
+                <br/><br/>
                 {props.data.coverLetter.statement1}&nbsp;  
                 {props.data.jobs.jobTitle} within {props.data.jobs.company},&nbsp;
                 {props.data.coverLetter.statement2}  
@@ -44,7 +44,7 @@ const CoverLetter = (props) => {
                 <br/><br/>
                 {props.data.coverLetter.statement3}
                 {props.data.coverLetter.statement4}  
-
+                <br/><br/>
                 {additionalContent()}
           
                 <br/><br/>
