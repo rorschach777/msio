@@ -35,7 +35,7 @@ const CoverLetter = (props) => {
             return (
             <p>
                 {props.data.jobs.appliedDate},<br /><br />
-                Dear&nbsp; {props.userInfo.firstName}&nbsp;{props.userInfo.firstName},
+                Dear&nbsp; {props.userInfo.firstName}&nbsp;{props.userInfo.lastName},
                 <br/><br/>
                 {props.data.coverLetter.statement1}&nbsp;  
                 {props.data.jobs.jobTitle} within {props.data.jobs.company},&nbsp;
