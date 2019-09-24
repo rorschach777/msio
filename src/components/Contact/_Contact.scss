@@ -2,7 +2,7 @@
     text-align: center !important;
     margin-bottom: 2.5rem;
     &__form{
-        @include row(5rem);
+        @include row(2.5rem);
         &__left{
             @include columns(7,12,12,$grid-standard);
             // @include boxPad(0 1.5rem);
@@ -35,8 +35,7 @@
                 margin: 1.5rem 0;
                 color: $color-gray-5;
             }
-            
-            @include columns(5,12,12,$grid-standard)
+            @include columns(5,12,12,$grid-standard);
             @media only screen and (max-width: $phone){
                 margin-bottom: 2.5rem;
              }

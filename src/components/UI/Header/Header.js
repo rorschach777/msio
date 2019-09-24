@@ -118,12 +118,10 @@ class Header extends Component {
                                 <NavLink to='/contact'><li>Contact</li></NavLink>
                                 <NavLink to='/'><li onClick={(e)=>this.props.logout(e)}>Logout</li></NavLink>
                             </ul>
-                            <Avatar/>
+                            {/* <Avatar/> */}
                             <p>Web Developer &amp; Graphic Designer with nearly 10 years of total industry experience, specializing in translating visual concepts into functioning interfaces.</p>
-                      
                             <div className="header__offcanvas__footer-info">
                                 <p className="u-fine-text">www.marksweitzer.io</p>
-                                {/* <button >Download Resume</button>   */}
                             </div>
                          
                         </div>

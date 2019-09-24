@@ -14,22 +14,17 @@ class AuthenticationCon extends Component {
     
     componentDidMount(){
         this.props.rdxGetAccessKeys();
-        // this.props.rdxCreateFormArr(this.props.rdxAuthState.authForm)
     }
-
     render() {
-    
         return (
             <div>
                 <Authentication
-                    //TODO: CLEAN THIS UP
                     accessKeyValid={this.props.rdxAccessKeyValid}
                     setAuthMethodButtons={this.setAuthMethodButtons}
                     /// REDUX 
                     rdxAuthState={this.props.rdxAuthState}
                     onChange={this.props.rdxAuth}
                     authForm={this.props.rdxAuthFormObj}
-                    // formElementsArr={this.props.rdxFormElementsArr}
                     submit={this.props.sendAuthForm}
                     signIn={this.props.rdxSignIn}
                     signInError={this.props.rdxSignInError}

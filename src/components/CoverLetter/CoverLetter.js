@@ -65,7 +65,7 @@ const CoverLetter = (props) => {
                     <ContactInformation/>
                 </div>
                 <div className='Cover-Letter__right'>
-                    {/* TODO: IMAGES ARENT RENDERING */}
+     
                     <img src={`${baseImgDir}/${imgName}`} />
                     {coverLetterContent()}
                 </div>

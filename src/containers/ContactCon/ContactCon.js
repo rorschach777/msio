@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Contact from '../../components/Contact/Contact';
 import {connect} from 'react-redux';
 import * as rdxActions from '../../store/actions/index';
+import './_ContactCon.scss';
 class ContactCon extends Component {
     componentDidMount(){
         this.props.coverLetterLoad(this.props.mainState.userInfo.accessKey)

@@ -2,8 +2,8 @@
 import * as actionTypes from './actionTypes';
 import axiosFBInstance from '../../axios/axios';
 import axios from 'axios';
-import {setUser, logoutTimer} from '../actions/mainActions';
-import {checkElementValidity} from '../../validation/validation';
+import { setUser, logoutTimer } from '../actions/mainActions';
+import { checkElementValidity } from '../../validation/validation';
 import axiosFB from '../../axios/axios';
 
 export const createFormArr = (authForm) => {
@@ -21,9 +21,8 @@ export const createFormArr = (authForm) => {
         }
     }
 }
-
 export const auth = (e, authState) => {
-    return  dispatch => {
+    return dispatch => {
         dispatch(inputUpdated(e, authState))
     }
 }
@@ -42,14 +41,14 @@ export const getAccessKeys = () => {
                 dispatch(setAccessKeys(keys))
 
             })
-            .catch(err=>{
+            .catch(err => {
                 console.log(err);
             }
-        )
+            )
     }
 }
 // SET THE ACCESS KEYS
-const setAccessKeys=(accessKeys)=>{
+const setAccessKeys = (accessKeys) => {
     return {
         type: actionTypes.AUTH_SET_ACCESSKEYS,
         payload: {
@@ -60,30 +59,30 @@ const setAccessKeys=(accessKeys)=>{
 const setInput = (inputId, updatedAuthFormElement) => {
     return {
         type: actionTypes.AUTH_INPUT_UPDATED,
-        payload:{
+        payload: {
             id: inputId,
             updatedAuthFormElement: updatedAuthFormElement
-        } 
+        }
     }
 }
 export const toggleAuthType = (e, authForm, prop) => {
     e.preventDefault()
-    // TODO: this isn't working
+
     return dispatch => {
-        if (prop === 'signIn'){
-        
+        if (prop === 'signIn') {
+
             dispatch(signInButtonClick(authForm))
-   
+
         }
-        else if (prop === 'signUp'){
+        else if (prop === 'signUp') {
             // signInButton.removeAttribute('aria-expanded')
             dispatch(signUpButtonClick(authForm))
-        } 
-    
+        }
+
     }
-    
+
 }
-// TODO: This isn't working
+
 const updateInputUI = (el, placeholder) => {
 
     return {
@@ -91,7 +90,6 @@ const updateInputUI = (el, placeholder) => {
     }
 }
 const signInButtonClick = (authForm) => {
-    // TODO: SET METHOD BUTTONS
     return {
         type: actionTypes.AUTH_METHOD_TOGGLE,
         payload: {
@@ -111,7 +109,7 @@ const signInButtonClick = (authForm) => {
                     ...authForm.lastName,
                     isValid: true,
                     touched: true
-                }, 
+                },
                 companyName: {
                     ...authForm.companyName,
                     isValid: true,
@@ -139,7 +137,7 @@ const signInButtonClick = (authForm) => {
         }
     }
 }
-const signUpButtonClick = (authForm) =>{
+const signUpButtonClick = (authForm) => {
     return {
         type: actionTypes.AUTH_METHOD_TOGGLE,
         payload: {
@@ -158,51 +156,51 @@ const signUpButtonClick = (authForm) =>{
 }
 export const sendAuthForm = (e, authState) => {
     return dispatch => {
-    axiosFBInstance.get('/accessKeys.json')
-    .then(accessKeys => {
-        const formattedAccessKeys = []
-        accessKeys.data.forEach((cur, idx) => {
-            formattedAccessKeys.push(cur.toLowerCase())
-        })
-        let userEmailPass = {
-            email: authState.authForm.emailAddress.value,
-            password: authState.authForm.password.value,
-            returnSecureToken: true
-        }
-        return userEmailPass
+        axiosFBInstance.get('/accessKeys.json')
+            .then(accessKeys => {
+                const formattedAccessKeys = []
+                accessKeys.data.forEach((cur, idx) => {
+                    formattedAccessKeys.push(cur.toLowerCase())
+                })
+                let userEmailPass = {
+                    email: authState.authForm.emailAddress.value,
+                    password: authState.authForm.password.value,
+                    returnSecureToken: true
+                }
+                return userEmailPass
 
-    })
-    .then(userEmailPass=>{
-        if (authState.signUp){
-            dispatch(checkAccessKeys(e, authState, userEmailPass));
-        }
-        else if (authState.signIn){
-            dispatch(signIn(e, userEmailPass, authState)); 
-        }
-       
-    })
+            })
+            .then(userEmailPass => {
+                if (authState.signUp) {
+                    dispatch(checkAccessKeys(e, authState, userEmailPass));
+                }
+                else if (authState.signIn) {
+                    dispatch(signIn(e, userEmailPass, authState));
+                }
+
+            })
     }
 }
 const checkAccessKeys = (e, authState, userEmailPass) => {
-    return dispatch =>{
+    return dispatch => {
         let proposedAccessKey = authState.authForm.accessKey.value.toLowerCase()
         let accessKeys = []
-        authState.accessKeys.forEach((cur, idx)=>{
+        authState.accessKeys.forEach((cur, idx) => {
             accessKeys.push(cur.toLowerCase())
-        }) 
-        if(accessKeys.includes(proposedAccessKey)){
+        })
+        if (accessKeys.includes(proposedAccessKey)) {
             dispatch(accessKeyValid(true))
             dispatch(signUp(userEmailPass, authState));
         }
         else {
-            dispatch(accessKeyValid(false)) ;
-          
+            dispatch(accessKeyValid(false));
+
             dispatch(toggleError(e, 'signUpError', true));
             dispatch(toggleError(e, 'signInError', false));
         }
     }
 }
-const accessKeyValid = (val)=>{
+const accessKeyValid = (val) => {
     return {
         type: actionTypes.AUTH_CHECK_ACCESSKEYS,
         payload: {
@@ -217,47 +215,46 @@ const signUp = (userEmailPass, authState) => {
         let loginId = proposedAccessKey.split('_')
         loginId = loginId.pop().toString();
         urlModifier = 'signUp'
-
         axiosFB.get('/fbKey.json')
-        .then((keyStr)=>{
-        let key = keyStr.data
-            return key
-        })
-        .then((key)=>{
-            axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:${urlModifier}?key=${key}`, userEmailPass)
-            // get the user id
-            .then(response => {
-                let userId = response.data.localId
-                return userId;
+            .then((keyStr) => {
+                let key = keyStr.data
+                return key
+            })
+            .then((key) => {
+                axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:${urlModifier}?key=${key}`, userEmailPass)
+                    // get the user id
+                    .then(response => {
+                        let userId = response.data.localId
+                        return userId;
 
-            })
-            // pass this along into the user object
-            .then(uId => {
-            
-                let user = {
-                    accessKey: authState.authForm.accessKey.value,
-                    companyName: authState.authForm.companyName.value,
-                    firstName: authState.authForm.firstName.value,
-                    lastName: authState.authForm.lastName.value,
-                    userId: uId
-                }
-                return user
-            })
-            // post the user object into table
-            .then(userInfo => {
-                // User Sucessful sign up - display message. 
-                axiosFBInstance.post('users.json', userInfo)
-                dispatch(signUpSuccess(true))
-            })
-            //ERROR
-            .catch(err => {
-                dispatch(signUpError())
-            })
+                    })
+                    // pass this along into the user object
+                    .then(uId => {
 
-        }
-        )
+                        let user = {
+                            accessKey: authState.authForm.accessKey.value,
+                            companyName: authState.authForm.companyName.value,
+                            firstName: authState.authForm.firstName.value,
+                            lastName: authState.authForm.lastName.value,
+                            userId: uId
+                        }
+                        return user
+                    })
+                    // post the user object into table
+                    .then(userInfo => {
+                        // User Sucessful sign up - display message. 
+                        axiosFBInstance.post('users.json', userInfo)
+                        dispatch(signUpSuccess(true))
+                    })
+                    //ERROR
+                    .catch(err => {
+                        dispatch(signUpError())
+                    })
+
+            }
+            )
     }
-} 
+}
 export const signUpError = () => {
     return {
         type: actionTypes.AUTH_SIGNUP_ERROR
@@ -274,7 +271,7 @@ export const toggleError = (e, errorTarget, val) => {
         }
     }
 }
-const signUpSuccess = (val)=>{
+const signUpSuccess = (val) => {
     return {
         type: actionTypes.AUTH_SIGNUP_SUCCESS,
         payload: {
@@ -286,32 +283,30 @@ const signIn = (e, userEmailPass, authState) => {
     return dispatch => {
         let urlModifier = 'signInWithPassword'
         axiosFB.get('/fbKey.json')
-        
-        .then((keyStr)=>{
-        let key = keyStr.data
-            return key
-        })
-
-        .then((key)=>{
-            axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:${urlModifier}?key=${key}`, userEmailPass)
-            .then(response => {
-                let globals = {
-                    localId : response.data.localId,
-                    token:  response.data.idToken,
-                    tokenExp : response.data.expiresIn
-                }
-                dispatch(accessKeyValid(true))
-                dispatch(setUser(globals));
-
+            .then((keyStr) => {
+                let key = keyStr.data
+                return key
             })
-            .catch(err => {
-                dispatch(toggleError(e, 'signUpError', false));
-                dispatch(toggleError(e, 'signInError', true));
+            .then((key) => {
+                axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:${urlModifier}?key=${key}`, userEmailPass)
+                    .then(response => {
+                        let globals = {
+                            localId: response.data.localId,
+                            token: response.data.idToken,
+                            tokenExp: response.data.expiresIn
+                        }
+                        dispatch(accessKeyValid(true))
+                        dispatch(setUser(globals));
+
+                    })
+                    .catch(err => {
+                        dispatch(toggleError(e, 'signUpError', false));
+                        dispatch(toggleError(e, 'signInError', true));
+                    })
             })
-        })
     }
-} 
-export const authReset = ()=> {
+}
+export const authReset = () => {
     return {
         type: actionTypes.AUTH_SIGNIN_RESET
     }
@@ -333,7 +328,7 @@ const inputUpdated = (e, authState) => {
             value: value,
             isValid: isValid,
             inputConfig: {
-                ...authForm[inputId].inputConfig, 
+                ...authForm[inputId].inputConfig,
                 errorVisible: errorVisible
             },
             touched: touched
@@ -347,11 +342,11 @@ const inputUpdated = (e, authState) => {
         }
         console.log('UPDATED AUTH FORM')
         console.log(updatedAuthFormElement)
-  
+
         dispatch(setInput(inputId, updatedAuthFormElement));
         dispatch(checkTotalValidity(updatedAuthForm));
     }
-   
+
 
 }
 // CHECK TO SEE IF UPDATED FORM IS VALID

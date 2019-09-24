@@ -9,16 +9,6 @@ const formElements = () => {
 }
 const Authentication = (props) => {
     let formElementsArr = [];
-  
-    // let formKeys = Object.keys(props.authForm)
-    // let formVals = Object.values(props.authForm)
-
-    // formKeys.forEach((cur, idx)=>{
-    //     formElementsArr.push({
-    //         id: cur,
-    //         config: formVals[idx]
-    //     })
-    // })
 
     for (let key in props.authForm) {
         formElementsArr.push({
@@ -26,9 +16,9 @@ const Authentication = (props) => {
             config: props.authForm[key]
         })
     }
-    // TODO: NEED TO ADD A PANEL... IF YOU HAVE ALREADY SIGNED UP, Show a panel that says you have already signed up. 
     const authenticationTypeFields = () => {
-        // {props.setAuthMethodButtons()}
+        // Safari / IE fix --- These browsers don't care about mapping key order.
+        // this forces them to retain input order on form. 
         formElementsArr.sort((a, b)=>{
             return a.config.order - b.config.order
         })

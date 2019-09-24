@@ -45,7 +45,6 @@ const Resume = (props) => {
                                 Languages &amp; Technologies:
                             </h3>
                             <ul>
-                                {/* //TODO: Make Resume List Better */}
                                 {languagesTop.map((cur, idx)=>{
                                     return <li>{cur}</li>
                                 })}
