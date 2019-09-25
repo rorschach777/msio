@@ -16,8 +16,7 @@ class AuthenticationCon extends Component {
         let c = this.props.rdxAuthFormObj.accessKey.value.split('_')
         let company = c[c.length -1]
         let companyCapitalized = company.charAt(0).toUpperCase() + company.slice(1);
-        
-        console.log(company)
+  
         const email = {
             recipient: `${this.props.rdxAuthFormObj.emailAddress.value}`,
             firstName: `${this.props.rdxAuthFormObj.firstName.value}`,
@@ -26,7 +25,6 @@ class AuthenticationCon extends Component {
             subject: 'Mark Sweitzer | Sign Up Success',
             text: 'Here is some text.'
         }
-        console.log(email)
         fetch(`http://www.marksweitzer.io/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&text=${email.text}&key=${this.props.rdxAuthState.sgKey}`) //query string url
             .catch(err => console.error(err))
     }
