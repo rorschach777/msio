@@ -4,6 +4,10 @@ const cors = require('cors');
 const sgMail = require('@sendgrid/mail');
 const app = express();
 app.use(cors());
+app.get('/', (req, res) => {
+    res.send("Welcome to the Sendgrid Emailing Server"); 
+});
+
 app.get('/login', (req, res)=>{
     const { recipient, sender, topic, text, firstName, companyName, key } = req.query; 
     sgMail.setApiKey(key);
