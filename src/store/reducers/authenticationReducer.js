@@ -2,6 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     accessKeys: [],
+    sgKey: null,
     accessKeyValid: false,
     formElementsArr: [],
     authForm: {
@@ -154,6 +155,12 @@ const authenticationReducer = (state = initialState, action) => {
             ...state,
             formElementsArr: [...action.payload.formElementsArr]
         }
+        //
+        case actionTypes.AUTH_GET_SGKEY:
+        return {
+            ...state,
+            sgKey: action.payload.val
+        }
         case actionTypes.AUTH_GET_ACCESSKEYS:
         return{
             ...state, 
@@ -215,6 +222,7 @@ const authenticationReducer = (state = initialState, action) => {
             authForm: {
                 ...action.payload.authForm
             },
+            signUpSuccess: action.payload.signUpSuccess,
             signIn: action.payload.signIn,
             signUp: action.payload.signUp
 

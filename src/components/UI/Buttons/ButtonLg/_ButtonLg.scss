@@ -14,4 +14,10 @@
     &:hover{
         @include hover-up;
     }
+    &:disabled{
+        background-color: $color-gray-3;
+        &:hover{
+            transform: translateY(0)
+        }
+    }
 }

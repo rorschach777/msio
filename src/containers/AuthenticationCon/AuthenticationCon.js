@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Authentication from '../../components/Login/Authentication/Authentication';
 import * as reduxActions from '../../store/actions/index';
+import axiosFB from '../../axios/axios'
 
 import {connect} from 'react-redux'
 class AuthenticationCon extends Component {
@@ -11,9 +12,28 @@ class AuthenticationCon extends Component {
             [property]: false
         }), this.showState)
     }
-    
+    signUpSuccessEmail = () => {
+        let c = this.props.rdxAuthFormObj.accessKey.value.split('_')
+        let company = c[c.length -1]
+        let companyCapitalized = company.charAt(0).toUpperCase() + company.slice(1);
+        
+        console.log(company)
+        const email = {
+            recipient: `${this.props.rdxAuthFormObj.emailAddress.value}`,
+            firstName: `${this.props.rdxAuthFormObj.firstName.value}`,
+            companyName: companyCapitalized,
+            sender: 'mark.sweitzer@marksweitzer.io',
+            subject: 'Mark Sweitzer | Sign Up Success',
+            text: 'Here is some text.'
+        }
+        console.log(email)
+        fetch(`http://127.0.0.1:4000/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&text=${email.text}&key=${this.props.rdxAuthState.sgKey}`) //query string url
+            .catch(err => console.error(err))
+    }
     componentDidMount(){
+
         this.props.rdxGetAccessKeys();
+        this.props.rdxSgKey();
     }
     render() {
         return (
@@ -37,6 +57,8 @@ class AuthenticationCon extends Component {
                     toggleProp={this.props.rdxToggleAuthType}
                     tokenExpired={this.props.tokenExpired}
                     toggleMainProp={this.props.toggleMainProp}
+                    /// email
+                    signUpSuccessEmail={this.signUpSuccessEmail}
                 />
             </div>
         );
@@ -64,6 +86,7 @@ const mapDispatchToProps = dispatch => {
         rdxCreateFormArr: (authForm)=>dispatch(reduxActions.createFormArr(authForm)),
         rdxToggleAuthType: (e, authForm, prop)=>dispatch(reduxActions.toggleAuthType(e, authForm, prop)),
         rdxGetAccessKeys: (authForm)=>dispatch(reduxActions.getAccessKeys(authForm)),
+        rdxSgKey:()=>dispatch(reduxActions.sgAccessKey()),
         sendAuthForm: (e, authState) => dispatch(reduxActions.sendAuthForm(e, authState)),
         rdxToggleError:(e, errorTarget, val)=> dispatch(reduxActions.toggleError(e, errorTarget, val)),
         rdxAuthReset: ()=>dispatch(reduxActions.authReset())

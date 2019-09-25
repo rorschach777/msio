@@ -13,7 +13,8 @@ export {
     toggleAuthType,
     sendAuthForm,
     toggleError,
-    authReset
+    authReset,
+    sgAccessKey
 } from './authenticationActions';
 export {
     contactFormInit,

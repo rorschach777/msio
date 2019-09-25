@@ -47,6 +47,26 @@ export const getAccessKeys = () => {
             )
     }
 }
+export const sgAccessKey = () => {
+    return dispatch => {
+        let k
+        axiosFB.get('/sgKey.json')
+        .then (res=>{
+           k = res.data
+           dispatch(setSgKey(k))
+        }) 
+ 
+    }
+      
+}
+const setSgKey = (k) => {
+    return {
+        type: actionTypes.AUTH_GET_SGKEY,
+        payload: {
+            val: k
+        }
+    }
+}
 // SET THE ACCESS KEYS
 const setAccessKeys = (accessKeys) => {
     return {
@@ -70,12 +90,9 @@ export const toggleAuthType = (e, authForm, prop) => {
 
     return dispatch => {
         if (prop === 'signIn') {
-
             dispatch(signInButtonClick(authForm))
-
         }
         else if (prop === 'signUp') {
-            // signInButton.removeAttribute('aria-expanded')
             dispatch(signUpButtonClick(authForm))
         }
 
@@ -132,6 +149,7 @@ const signInButtonClick = (authForm) => {
                     value: null
                 }
             },
+            signUpSuccess: false,
             signIn: true,
             signUp: false
         }
@@ -149,6 +167,7 @@ const signUpButtonClick = (authForm) => {
                     touched: false
                 }
             },
+            signUpSuccess: false,
             signIn: false,
             signUp: true
         }
@@ -340,9 +359,6 @@ const inputUpdated = (e, authState) => {
                 ...updatedAuthFormElement
             }
         }
-        console.log('UPDATED AUTH FORM')
-        console.log(updatedAuthFormElement)
-
         dispatch(setInput(inputId, updatedAuthFormElement));
         dispatch(checkTotalValidity(updatedAuthForm));
     }

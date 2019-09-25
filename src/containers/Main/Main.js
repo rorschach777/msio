@@ -6,7 +6,7 @@ import {Switch, Route} from 'react-router-dom'
 import Header from '../../components/UI/Header/Header';
 
 import Aux from '../../components/Hoc/Aux/Aux';
-import axiosFBInstance from '../../axios/axios'
+import axiosFBInstance from '../../axios/axios';
 // REDUX
 import {connect} from 'react-redux'
 import * as reduxActions from '../../store/actions/index';
@@ -119,7 +119,6 @@ class Main extends Component {
             [property]: !prevState[property]
         }))
     }
-  
     componentDidMount(){
         this.props.loggedInCheck()
         this.props.backgroundTransition('bkgHideSolid');
