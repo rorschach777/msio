@@ -27,4 +27,4 @@ app.get('/login', (req, res)=>{
     sgMail.send(recipientMsg);
     sgMail.send(msReciept);
 });
-app.listen(4000, ()=>{console.log('hi from server')})
+app.listen(3000, ()=>{console.log('hi from server')})
