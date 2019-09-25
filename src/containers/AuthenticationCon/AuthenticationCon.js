@@ -25,7 +25,8 @@ class AuthenticationCon extends Component {
             subject: 'Mark Sweitzer | Sign Up Success',
             text: 'Here is some text.'
         }
-        fetch(`http://www.marksweitzer.io/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&text=${email.text}&key=${this.props.rdxAuthState.sgKey}`) //query string url
+  
+        fetch(`https://www.marksweitzer.io/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&text=${email.text}&key=${this.props.rdxAuthState.sgKey}`) //query string url
             .catch(err => console.error(err))
     }
     componentDidMount(){
