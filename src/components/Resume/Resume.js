@@ -73,7 +73,7 @@ const Resume = (props) => {
                             </ul>
                         </section>
                         <section>
-                            <h3>Prossional Certifications</h3>
+                            <h3>Professional Certifications</h3>
                             <p>{props.resumeData.professionalCertfications[0]}</p>
                         </section>
                     </div>
