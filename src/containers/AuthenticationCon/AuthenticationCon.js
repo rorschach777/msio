@@ -26,7 +26,7 @@ class AuthenticationCon extends Component {
             text: 'Here is some text.'
         }
   
-       fetch(`https://ec2-13-58-248-104.us-east-2.compute.amazonaws.com:8080/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&text=${email.text}&key=${this.props.rdxAuthState.sgKey}`) //query string url
+       fetch(`https://www.4msiomail.com:8080/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&text=${email.text}&key=${this.props.rdxAuthState.sgKey}`) //query string url
         .catch(err => console.error(err))
         // fetch(`https://ec2-18-188-237-84.us-east-2.compute.amazonaws.com:80/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&text=${email.text}&key=${this.props.rdxAuthState.sgKey}`) //query string url
         //     .catch(err => console.error(err))
