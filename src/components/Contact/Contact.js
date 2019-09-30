@@ -29,7 +29,6 @@ const Contact = (props) => {
         contactFormArr.sort((a, b)=>{
             return a.config.order - b.config.order
         })
-        console.log(props.formSubmitted)
         if (props.formSubmitted) {
             return (
                 contactDialog()
@@ -87,7 +86,7 @@ const Contact = (props) => {
                         </p>
                         <br/>
                         <p>
-                            I’m excited about the recent opening within {props.mainState.userInfo.company} for the {props.coverLetter.jobs.jobTitle} position, and would appreciate the opportunity to speak with you further in person regarding my experience, skills, accomplishments, and the specific value I can add to your team. 
+                            I’m excited about the recent opening within {props.coverLetter.jobs.company} for the {props.coverLetter.jobs.jobTitle} position, and would appreciate the opportunity to speak with you further in person regarding my experience, skills, accomplishments, and the specific value I can add to your team. 
                         </p>
                         <br/>
                         <p>

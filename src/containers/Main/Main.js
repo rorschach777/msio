@@ -159,7 +159,7 @@ class Main extends Component {
                         <Route exact path='/cover-letter' render={()=><CoverLetterCon loginId={this.props.loginId} userInfo={this.props.userInfo}/>} />
                         <Route exact path='/skills' render={()=><SkillsCon show={this.props.test} click={this.toggleTest}/>}/>
                         <Route exact path='/portfolio' render={()=><Portfolio/>}/>
-                        <Route exact path='/contact' render={()=><ContactCon toggleBkg={this.toggleBkg}/>}/>
+                        <Route exact path='/contact' render={()=><ContactCon toggleBkg={this.toggleBkg} userInfo={this.props.userInfo}/>}/>
                     </Aux>
                 )
         }

@@ -7,10 +7,6 @@ export const coverLetterLoad = (accessKey) => {
         .then((jobs, jobsReject) => {
             let job = {}
             jobs.data.forEach((cur, idx) => {
-                console.log('-- PASSED ACCESS KEY : ---')
-                console.log(accessKey)
-                console.log('-- CUR : ---')
-                console.log(cur.accessKey)
                 if (cur.accessKey.toLowerCase() === accessKey.toLowerCase()) {
                     Object.assign(job, cur)
                 }

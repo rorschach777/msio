@@ -42,7 +42,7 @@ const CoverLetter = (props) => {
                 {props.data.coverLetter.statement2}  
 
                 <br/><br/>
-                {props.data.coverLetter.statement3}
+                {props.data.coverLetter.statement3}&nbsp;
                 {props.data.coverLetter.statement4}  
                 <br/><br/>
                 {additionalContent()}

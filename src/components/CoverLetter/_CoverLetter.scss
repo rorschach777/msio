@@ -20,6 +20,9 @@
         img{
             width: 18rem;
             margin-bottom: 1.5rem;
+            @media only screen and (max-width: $phone){ 
+                @include center-block(2.5rem);
+            }
         }
         @include columns(8, 12, 12, $grid-gutterless);
         border-left: 1px solid $color-gray-6;
