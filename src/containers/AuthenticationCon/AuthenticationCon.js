@@ -23,17 +23,15 @@ class AuthenticationCon extends Component {
             companyName: companyCapitalized,
             sender: 'mark.sweitzer@marksweitzer.io',
             subject: 'Mark Sweitzer | Sign Up Success',
-            text: 'Here is some text.'
+
         }
-  
-       fetch(`https://www.msiomail.info:443/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&text=${email.text}&key=${this.props.rdxAuthState.sgKey}`) //query string url
-        .catch(err => console.error(err))
-        // fetch(`https://ec2-18-188-237-84.us-east-2.compute.amazonaws.com:80/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&text=${email.text}&key=${this.props.rdxAuthState.sgKey}`) //query string url
+        // Email Confirmation.
+        //    fetch(`https://www.msiomail.info:443/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&key=${this.props.rdxAuthState.sgKey}`) //query string url
         //     .catch(err => console.error(err))
+
     }
     
     componentDidMount(){
-
         this.props.rdxGetAccessKeys();
         this.props.rdxSgKey();
     }
@@ -59,6 +57,7 @@ class AuthenticationCon extends Component {
                     toggleProp={this.props.rdxToggleAuthType}
                     tokenExpired={this.props.tokenExpired}
                     toggleMainProp={this.props.toggleMainProp}
+                    
                     /// email
                     signUpSuccessEmail={this.signUpSuccessEmail}
                 />

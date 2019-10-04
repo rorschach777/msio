@@ -192,6 +192,7 @@ export const sendAuthForm = (e, authState) => {
             .then(userEmailPass => {
                 if (authState.signUp) {
                     dispatch(checkAccessKeys(e, authState, userEmailPass));
+                    
                 }
                 else if (authState.signIn) {
                     dispatch(signIn(e, userEmailPass, authState));
@@ -209,7 +210,7 @@ const checkAccessKeys = (e, authState, userEmailPass) => {
         })
         if (accessKeys.includes(proposedAccessKey)) {
             dispatch(accessKeyValid(true))
-            dispatch(signUp(userEmailPass, authState));
+            dispatch(signUp(e, userEmailPass, authState));
         }
         else {
             dispatch(accessKeyValid(false));
@@ -227,7 +228,7 @@ const accessKeyValid = (val) => {
         }
     }
 }
-const signUp = (userEmailPass, authState) => {
+const signUp = (e, userEmailPass, authState) => {
     return dispatch => {
         let proposedAccessKey = authState.authForm.accessKey.value
         let urlModifier
@@ -262,9 +263,23 @@ const signUp = (userEmailPass, authState) => {
                     // post the user object into table
                     .then(userInfo => {
                         // User Sucessful sign up - display message. 
+                      
                         axiosFBInstance.post('users.json', userInfo)
                         dispatch(signUpSuccess(true))
+             
+                       
+                 
                     })
+
+                    //// PROBLEM BLOCK: 
+                    // .then(()=>{
+                    //      // Set the logged in state to true // bypass signing in. 
+                    //     dispatch(signUpSuccess(true))
+                    //     toggleAuthType(e, authState.authForm, 'signIn')
+                    //     signIn(e, userEmailPass)
+                 
+                    //     console.log('SIGN IN FROM SIGN UP')
+                    // })
                     //ERROR
                     .catch(err => {
                         dispatch(signUpError())
@@ -298,7 +313,7 @@ const signUpSuccess = (val) => {
         }
     }
 }
-const signIn = (e, userEmailPass, authState) => {
+const signIn = (e, userEmailPass) => {
     return dispatch => {
         let urlModifier = 'signInWithPassword'
         axiosFB.get('/fbKey.json')

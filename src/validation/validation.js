@@ -11,11 +11,11 @@ export const checkElementValidity = (value, validationRules) => {
         const regExPassword = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,15}$/;
         isValid = regExPassword.test(value)
     }
-    if (validationRules.maxLength) {
-        isValid = value.length <= validationRules.maxLength 
-    }
     if (validationRules.minLength) {
         isValid = value.length >= validationRules.minLength
+    }
+    if (validationRules.maxLength) {
+        isValid = value.length <= validationRules.maxLength 
     }
     if (validationRules.notHTML){
         const regexHTML = /<(|\/|[^\/>][^>]+|\/[^>][^>]+)>/

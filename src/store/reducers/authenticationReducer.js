@@ -125,8 +125,7 @@ const initialState = {
             validation: {
                 required: true,
                 minLength: 2,
-                maxLength: 25,
-            
+                maxLength: 20,
             },
             isValid: true,
             touched: false,
