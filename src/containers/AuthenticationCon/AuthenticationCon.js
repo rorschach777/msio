@@ -14,7 +14,6 @@ class AuthenticationCon extends Component {
     }
     signUpSuccessEmail = (e) => {
         e.preventDefault()
-        alert('hi')
         let c = this.props.rdxAuthFormObj.accessKey.value.split('_')
         let company = c[c.length -1]
         let companyCapitalized = company.charAt(0).toUpperCase() + company.slice(1);
