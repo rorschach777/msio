@@ -5,7 +5,7 @@
     width: 108rem;
     margin-top: 5rem;
     height: inherit;
-    overflow: hidden;
+    overflow: visible;
     @media only screen and (max-width: $tablet){ 
         margin-top: 8rem;
     }

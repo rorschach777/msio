@@ -273,39 +273,46 @@ const signUp = (e, userEmailPass, authState) => {
                     .then(()=>{
                          // Set the logged in state to true // bypass signing in. 
                         dispatch(signUpSuccess(true))
-                        dispatch(signIn(e, userEmailPass))
-                    
+                        dispatch(signIn(e, userEmailPass));
                     })
                     //ERROR
                     .catch(err => {
                         dispatch(signUpError())
                     })
 
-            }
+                }
             )
     }
 }
-// const signUpSuccessEmail = (accessKey) => {
-//     return dispatch => {
-//         let c = accessKey.value.split('_')
-//         let company = c[c.length -1]
-//         let companyCapitalized = company.charAt(0).toUpperCase() + company.slice(1);
-//         console.log('EMAIL CONF SENT')
-//         const email = {
-//             recipient: `${this.props.rdxAuthFormObj.emailAddress.value}`,
-//             firstName: `${this.props.rdxAuthFormObj.firstName.value}`,
-//             companyName: companyCapitalized,
-//             sender: 'mark.sweitzer@marksweitzer.io',
-//             subject: 'Mark Sweitzer | Sign Up Success',
-    
-//         }
-//         // Email Confirmation.
-//            fetch(`https://sendgrid-webserver.herokuapp.com:37284/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&key=${this.props.rdxAuthState.sgKey}`) //query string url
-//             .catch(err => console.error(err))
+// const signUpSuccessEmail = (authForm) => {
 
+//     let c = authForm.accessKey.value.split('_')
+//     let company = c[c.length -1]
+//     let companyCapitalized = company.charAt(0).toUpperCase() + company.slice(1);
+//     console.log('EMAIL CONF SENT')
+//     console.log('------ AUTHFORM-----')
+//     console.log(authForm)
+//     const email = {
+//         recipient: `${authForm.emailAddress.value}`,
+//         firstName: `${authForm.firstName.value}`,
+//         companyName: companyCapitalized,
+//         sender: 'mark.sweitzer@marksweitzer.io',
+//         subject: 'Mark Sweitzer | Sign Up Success',
+
+//     }
+//     console.log('---- EMAIL -----')
+//     console.log(email)
+//     // Email Confirmation.
+//     fetch(`https://sendgrid-webserver.herokuapp.com/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&key=${this.props.rdxAuthState.sgKey}`)
+//     .then(()=>{
+//         console.log('END OF SIGNUPSUCCESSEMAIL')
+
+//     })//query string url
+//     .catch(err => console.error(err))
+//     return dispatch => {
+       
 //         dispatch(signUpSuccess(true))
 //     }
-
    
 // }
 export const signUpError = () => {
