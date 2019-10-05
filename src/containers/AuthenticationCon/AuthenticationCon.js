@@ -12,11 +12,12 @@ class AuthenticationCon extends Component {
             [property]: false
         }), this.showState)
     }
-    signUpSuccessEmail = () => {
+    signUpSuccessEmail = (e) => {
+        e.preventDefault()
+        alert('hi')
         let c = this.props.rdxAuthFormObj.accessKey.value.split('_')
         let company = c[c.length -1]
         let companyCapitalized = company.charAt(0).toUpperCase() + company.slice(1);
-  
         const email = {
             recipient: `${this.props.rdxAuthFormObj.emailAddress.value}`,
             firstName: `${this.props.rdxAuthFormObj.firstName.value}`,
@@ -25,12 +26,10 @@ class AuthenticationCon extends Component {
             subject: 'Mark Sweitzer | Sign Up Success',
 
         }
-        // Email Confirmation.
-        //    fetch(`https://www.msiomail.info:443/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&key=${this.props.rdxAuthState.sgKey}`) //query string url
-        //     .catch(err => console.error(err))
-
+      // Email Confirmation.
+           fetch(`https://sendgrid-webserver.herokuapp.com/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&key=${this.props.rdxAuthState.sgKey}`) //query string url
+            .catch(err => console.error(err))
     }
-    
     componentDidMount(){
         this.props.rdxGetAccessKeys();
         this.props.rdxSgKey();
@@ -57,7 +56,7 @@ class AuthenticationCon extends Component {
                     toggleProp={this.props.rdxToggleAuthType}
                     tokenExpired={this.props.tokenExpired}
                     toggleMainProp={this.props.toggleMainProp}
-                    
+
                     /// email
                     signUpSuccessEmail={this.signUpSuccessEmail}
                 />
@@ -90,7 +89,7 @@ const mapDispatchToProps = dispatch => {
         rdxSgKey:()=>dispatch(reduxActions.sgAccessKey()),
         sendAuthForm: (e, authState) => dispatch(reduxActions.sendAuthForm(e, authState)),
         rdxToggleError:(e, errorTarget, val)=> dispatch(reduxActions.toggleError(e, errorTarget, val)),
-        rdxAuthReset: ()=>dispatch(reduxActions.authReset())
+        rdxAuthReset: ()=>dispatch(reduxActions.authReset()),
       
     }
 }

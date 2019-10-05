@@ -20,6 +20,15 @@
             margin-top: 1.5rem;
         }
     }
+    &__signup-success{
+        h1, h4, p {
+            text-align: center !important;
+        } 
+        p{
+            color: $color-1;
+            margin: 2.5rem 0;
+        }
+    }
     &__header{
         height: auto;
         overflow: hidden;

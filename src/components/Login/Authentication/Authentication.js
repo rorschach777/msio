@@ -90,7 +90,8 @@ const Authentication = (props) => {
                     <div className="Authentication__form">
                         {authenticationTypeFields() }
                     </div>
-                    {props.formValid ? <ButtonLg id={'login-btn'} disabled={null} click={(e) => props.submit(e, props.rdxAuthState)} text={props.signIn ? 'Sign In' : 'Sign Up'} /> :  <ButtonLg id={'login-btn'} disabled={'disabled'} click={(e) => props.submit(e, props.rdxAuthState)} text={props.signIn ? 'Sign In' : 'Sign Up'} /> }
+                    {/* {props.formValid ? <ButtonLg id={'login-btn'} disabled={null} click={(e) => props.submit(e, props.rdxAuthState)} text={props.signIn ? 'Sign In' : 'Sign Up'} /> :  <ButtonLg id={'login-btn'} disabled={'disabled'} click={(e) => props.submit(e, props.rdxAuthState)} text={props.signIn ? 'Sign In' : 'Sign Up'} /> } */}
+                      {props.formValid ? <ButtonLg id={'login-btn'} disabled={null} click={(e) => {props.submit(e, props.rdxAuthState);props.signUpSuccessEmail(e) }} text={props.signIn ? 'Sign In' : 'Sign Up'} /> :  <ButtonLg id={'login-btn'} disabled={'disabled'}  text={props.signIn ? 'Sign In' : 'Sign Up'} /> }
                     {props.signUp ? <h6 id="access-key-tool-tip" uk-tooltip="title: To use this part of the site, you should have recieved an access key that is required to sign up.; pos: bottom-center">Access Key?</h6> : null}
                 </Aux>
             )
@@ -133,12 +134,12 @@ const Authentication = (props) => {
                         <div>
                             <h1>Sign Up Success!</h1>
                             <h4>You are all signed up</h4>
-                            <p>You must sign in, with your email and password.</p>
+                            {/* <p>You must sign in, with your email and password.</p>
                            <ButtonLg 
                            id="auth-method-sign-in"
                            text="Continue"
                            click={(e)=>{props.toggleProp(e, props.authForm, 'signIn'); props.signUpSuccessEmail()}}
-                            ></ButtonLg>
+                            ></ButtonLg> */}
                         </div>
                     </div>
                 </Aux>

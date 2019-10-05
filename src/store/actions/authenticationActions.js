@@ -95,7 +95,6 @@ export const toggleAuthType = (e, authForm, prop) => {
         else if (prop === 'signUp') {
             dispatch(signUpButtonClick(authForm))
         }
-
     }
 
 }
@@ -270,16 +269,13 @@ const signUp = (e, userEmailPass, authState) => {
                        
                  
                     })
-
-                    //// PROBLEM BLOCK: 
-                    // .then(()=>{
-                    //      // Set the logged in state to true // bypass signing in. 
-                    //     dispatch(signUpSuccess(true))
-                    //     toggleAuthType(e, authState.authForm, 'signIn')
-                    //     signIn(e, userEmailPass)
-                 
-                    //     console.log('SIGN IN FROM SIGN UP')
-                    // })
+                    // Log User In Automatically.
+                    .then(()=>{
+                         // Set the logged in state to true // bypass signing in. 
+                        dispatch(signUpSuccess(true))
+                        dispatch(signIn(e, userEmailPass))
+                    
+                    })
                     //ERROR
                     .catch(err => {
                         dispatch(signUpError())
@@ -289,6 +285,29 @@ const signUp = (e, userEmailPass, authState) => {
             )
     }
 }
+// const signUpSuccessEmail = (accessKey) => {
+//     return dispatch => {
+//         let c = accessKey.value.split('_')
+//         let company = c[c.length -1]
+//         let companyCapitalized = company.charAt(0).toUpperCase() + company.slice(1);
+//         console.log('EMAIL CONF SENT')
+//         const email = {
+//             recipient: `${this.props.rdxAuthFormObj.emailAddress.value}`,
+//             firstName: `${this.props.rdxAuthFormObj.firstName.value}`,
+//             companyName: companyCapitalized,
+//             sender: 'mark.sweitzer@marksweitzer.io',
+//             subject: 'Mark Sweitzer | Sign Up Success',
+    
+//         }
+//         // Email Confirmation.
+//            fetch(`https://sendgrid-webserver.herokuapp.com:37284/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&key=${this.props.rdxAuthState.sgKey}`) //query string url
+//             .catch(err => console.error(err))
+
+//         dispatch(signUpSuccess(true))
+//     }
+
+   
+// }
 export const signUpError = () => {
     return {
         type: actionTypes.AUTH_SIGNUP_ERROR
@@ -317,11 +336,15 @@ const signIn = (e, userEmailPass) => {
     return dispatch => {
         let urlModifier = 'signInWithPassword'
         axiosFB.get('/fbKey.json')
+          
             .then((keyStr) => {
+      
                 let key = keyStr.data
                 return key
             })
+
             .then((key) => {
+ 
                 axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:${urlModifier}?key=${key}`, userEmailPass)
                     .then(response => {
                         let globals = {
@@ -329,7 +352,9 @@ const signIn = (e, userEmailPass) => {
                             token: response.data.idToken,
                             tokenExp: response.data.expiresIn
                         }
+                 
                         dispatch(accessKeyValid(true))
+               
                         dispatch(setUser(globals));
 
                     })
