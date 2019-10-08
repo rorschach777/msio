@@ -26,8 +26,11 @@ class AuthenticationCon extends Component {
 
         }
         
+
         fetch(`https://sendgrid-webserver.herokuapp.com/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&key=${this.props.rdxAuthState.sgKey}`) //query string url
-        .catch(err => console.error(err))
+            .catch(err => console.error(err))
+    
+
    
 
     }
@@ -39,9 +42,8 @@ class AuthenticationCon extends Component {
         return (
             <div>
                 <Authentication
-                    accessKeyValid={this.props.rdxAccessKeyValid}
-                    setAuthMethodButtons={this.setAuthMethodButtons}
-                    /// REDUX 
+                    // accessKeyValid={this.props.rdxAccessKeyValid}
+                    // setAuthMethodButtons={this.setAuthMethodButtons}
                     rdxAuthState={this.props.rdxAuthState}
                     onChange={this.props.rdxAuth}
                     authForm={this.props.rdxAuthFormObj}
@@ -57,8 +59,6 @@ class AuthenticationCon extends Component {
                     toggleProp={this.props.rdxToggleAuthType}
                     tokenExpired={this.props.tokenExpired}
                     toggleMainProp={this.props.toggleMainProp}
-
-                    /// email
                     signUpSuccessEmail={this.signUpSuccessEmail}
                 />
             </div>

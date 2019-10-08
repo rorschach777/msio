@@ -34,7 +34,7 @@ const CoverLetter = (props) => {
         else {
             return (
             <p>
-                {props.data.jobs.appliedDate},<br /><br />
+                {props.data.jobs.appliedDate}<br /><br />
                 Dear&nbsp; {props.userInfo.firstName}&nbsp;{props.userInfo.lastName},
                 <br/><br/>
                 {props.data.coverLetter.statement1}&nbsp;  

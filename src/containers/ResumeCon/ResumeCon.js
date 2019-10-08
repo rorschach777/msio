@@ -15,11 +15,6 @@ class ResumeCon extends Component {
                 }
             }))
         })
-        .then(_=>{
-            console.log(this.state);
-        })
-        console.log(this.state)
-
     }
     shouldComponentUpdate(nextProps, nextState){
         if (this.state !== nextState || this.props !== nextProps){
