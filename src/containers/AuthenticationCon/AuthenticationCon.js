@@ -23,16 +23,10 @@ class AuthenticationCon extends Component {
             companyName: companyCapitalized,
             sender: 'mark.sweitzer@marksweitzer.io',
             subject: 'Mark Sweitzer | Sign Up Success',
-
         }
         
-
-        fetch(`https://sendgrid-webserver.herokuapp.com/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&key=${this.props.rdxAuthState.sgKey}`) //query string url
+        fetch(`https://sendgrid-webserver.herokuapp.com/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&key=${this.props.rdxAuthState.sgKey}`)
             .catch(err => console.error(err))
-    
-
-   
-
     }
     componentDidMount(){
         this.props.rdxGetAccessKeys();

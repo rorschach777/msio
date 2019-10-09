@@ -31,17 +31,12 @@ class Portfolio extends Component {
         staggerParentVisible: true,
         portfolio: []
     }
-    showState=()=>{
-        console.log(this.state)
-    }
     filterPortfolio=(type)=>{
        let p = this.state.portfolio
        let updatedPortfolio = []
         p.forEach((cur, idx)=>{
-
             if(type === cur.type){
                 cur = {...cur, visible: true}
-              
             }
             else if (type === 'reset'){
                 cur = {...cur, visible: true}
@@ -52,7 +47,6 @@ class Portfolio extends Component {
             }
             updatedPortfolio.push(cur)
         })
-        console.log(updatedPortfolio)
         this.setState(prevState=>({
             portfolio : [...updatedPortfolio]
         }))
@@ -113,21 +107,17 @@ class Portfolio extends Component {
                 )
             }
         }
- 
         return (
             <Con1080>
                 <div className="Portfolio">
                     <h1>Portfolio</h1>
                     <ul className="project-type-menu" data-uk-tab>
                         <li ><a href="#" onClick={()=>this.filterPortfolio('JS')}>JavaScript &amp; React</a></li>
-                        <li><a href="#" onClick={()=>this.filterPortfolio('GD')}>Graphic Design</a></li>
+                        <li><a href="#" onClick={()=>this.filterPortfolio('GD')}>Graphic Design &amp; UI</a></li>
                         <li><a href="#" onClick={()=>this.filterPortfolio('reset')}>Show All</a></li>
                     </ul>
                     <hr/>
-    
                     {content()}
-    
-    
                 </div>
             </Con1080>
         );

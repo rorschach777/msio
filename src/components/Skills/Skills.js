@@ -120,7 +120,7 @@ const Skills = (props) => {
                 <div className="row">
                     <h3>Microsoft 70-480</h3>
                     <p>
-                    Several of my friends work in the web development field, and have been required to take this exam for compliance purposes. I took this exam more as a way to gauge my own strengths and weaknesses. As expected my strengths reside more in CSS3 and implementing program flow. I look forward to learning more about working with data structures, and data security
+                    Several of my friends work in the web development field, and have been required to take this exam for compliance purposes. I took this exam more as a way to gauge my own strengths and weaknesses. As expected my strengths reside more in CSS3 and implementing program flow. I look forward to learning more about working with data structures, and data security.
                 </p><br/>
           
                     <div  className="skill">

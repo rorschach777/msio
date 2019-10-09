@@ -19,7 +19,7 @@
             color: inherit;
         }
         img {
-            @include center-block(2.5rem);
+            @include center-block(1.5rem);
             @media only screen and (max-width: $tablet){
                 @include center-block();
                 margin-top: 1.5rem;

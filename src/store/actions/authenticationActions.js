@@ -191,7 +191,6 @@ export const sendAuthForm = (e, authState) => {
             .then(userEmailPass => {
                 if (authState.signUp) {
                     dispatch(checkAccessKeys(e, authState, userEmailPass));
-                    
                 }
                 else if (authState.signIn) {
                     dispatch(signIn(e, userEmailPass, authState));
@@ -209,11 +208,10 @@ const checkAccessKeys = (e, authState, userEmailPass) => {
         })
         if (accessKeys.includes(proposedAccessKey)) {
             dispatch(accessKeyValid(true))
-            dispatch(signUp(e, userEmailPass, authState));
+            dispatch(signUp(e, authState, userEmailPass));
         }
         else {
             dispatch(accessKeyValid(false));
-
             dispatch(toggleError(e, 'signUpError', true));
             dispatch(toggleError(e, 'signInError', false));
         }
@@ -227,7 +225,7 @@ const accessKeyValid = (val) => {
         }
     }
 }
-const signUp = (e, userEmailPass, authState) => {
+const signUp = (e, authState, userEmailPass) => {
     return dispatch => {
         let proposedAccessKey = authState.authForm.accessKey.value
         let urlModifier
@@ -245,11 +243,9 @@ const signUp = (e, userEmailPass, authState) => {
                     .then(response => {
                         let userId = response.data.localId
                         return userId;
-
                     })
                     // pass this along into the user object
                     .then(uId => {
-
                         let user = {
                             accessKey: authState.authForm.accessKey.value,
                             companyName: authState.authForm.companyName.value,
@@ -262,11 +258,8 @@ const signUp = (e, userEmailPass, authState) => {
                     // post the user object into table
                     .then(userInfo => {
                         // User Sucessful sign up - display message. 
-                      
                         axiosFBInstance.post('users.json', userInfo)
                         dispatch(signUpSuccess(true))
-             
-                       
                  
                     })
                     // Log User In Automatically.
@@ -274,6 +267,11 @@ const signUp = (e, userEmailPass, authState) => {
                          // Set the logged in state to true // bypass signing in. 
                         dispatch(signUpSuccess(true))
                         dispatch(signIn(e, userEmailPass));
+                    })
+                    .then(()=>{
+                        // Send email confirmation
+                        dispatch(signUpSuccessEmail(authState.authForm, authState.sgKey))
+                    
                     })
                     //ERROR
                     .catch(err => {
@@ -284,37 +282,29 @@ const signUp = (e, userEmailPass, authState) => {
             )
     }
 }
-// const signUpSuccessEmail = (authForm) => {
+const signUpSuccessEmail = (authForm, key) => {
+    return dispatch => {
+    let c = authForm.accessKey.value.split('_')
+    let company = c[c.length -1]
+    let companyCapitalized = company.charAt(0).toUpperCase() + company.slice(1);
 
-//     let c = authForm.accessKey.value.split('_')
-//     let company = c[c.length -1]
-//     let companyCapitalized = company.charAt(0).toUpperCase() + company.slice(1);
-//     console.log('EMAIL CONF SENT')
-//     console.log('------ AUTHFORM-----')
-//     console.log(authForm)
-//     const email = {
-//         recipient: `${authForm.emailAddress.value}`,
-//         firstName: `${authForm.firstName.value}`,
-//         companyName: companyCapitalized,
-//         sender: 'mark.sweitzer@marksweitzer.io',
-//         subject: 'Mark Sweitzer | Sign Up Success',
+    const email = {
+        recipient: `${authForm.emailAddress.value}`,
+        firstName: `${authForm.firstName.value}`,
+        companyName: companyCapitalized,
+        sender: 'mark.sweitzer@marksweitzer.io',
+        subject: 'Mark Sweitzer | Sign Up Success',
 
-//     }
-//     console.log('---- EMAIL -----')
-//     console.log(email)
-//     // Email Confirmation.
-//     fetch(`https://sendgrid-webserver.herokuapp.com/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&key=${this.props.rdxAuthState.sgKey}`)
-//     .then(()=>{
-//         console.log('END OF SIGNUPSUCCESSEMAIL')
-
-//     })//query string url
-//     .catch(err => console.error(err))
-//     return dispatch => {
-       
-//         dispatch(signUpSuccess(true))
-//     }
-   
-// }
+    }
+    // post email confirmation
+    fetch(`https://sendgrid-webserver.herokuapp.com/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&key=${key}`)
+    .then(()=>{
+        dispatch(signUpSuccess(true))
+    })
+    .catch(err => console.error(err))
+      
+    }
+}
 export const signUpError = () => {
     return {
         type: actionTypes.AUTH_SIGNUP_ERROR
