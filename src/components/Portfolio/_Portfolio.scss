@@ -131,6 +131,9 @@ $thumbs : 'https://msiomedia.s3.us-east-2.amazonaws.com/portfolio/thumbnails';
     &--12 {
         background-image: url("#{$thumbs}/fq-magazine-thumb.jpg");
     }
+    &--13 {
+        background-image: url("#{$thumbs}/allergoff-thumb.jpg");
+    }
 }
 
 
