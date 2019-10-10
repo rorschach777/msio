@@ -38,7 +38,7 @@ const CoverLetter = (props) => {
                 Dear&nbsp; {props.userInfo.firstName}&nbsp;{props.userInfo.lastName},
                 <br/><br/>
                 {props.data.coverLetter.statement1}&nbsp;  
-                {props.data.jobs.jobTitle} within {props.data.jobs.company},&nbsp;
+                {props.data.jobs.jobTitle} position within {props.data.jobs.company},&nbsp;
                 {props.data.coverLetter.statement2}  
 
                 <br/><br/>
