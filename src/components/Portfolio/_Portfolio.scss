@@ -134,6 +134,9 @@ $thumbs : 'https://msiomedia.s3.us-east-2.amazonaws.com/portfolio/thumbnails';
     &--13 {
         background-image: url("#{$thumbs}/allergoff-thumb.jpg");
     }
+    &--14 {
+        background-image: url("#{$thumbs}/my-fit-site.jpg");
+    }
 }
 
 
