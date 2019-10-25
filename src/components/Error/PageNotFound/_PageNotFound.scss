@@ -11,6 +11,7 @@
         display: block;
         overflow: visible;
         height: auto;
+        color: $color-white !important;
         @media only screen and (max-width: $phone){
             font-size: 17rem !important;
             line-height: 17rem !important
