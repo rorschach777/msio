@@ -137,6 +137,9 @@ $thumbs : 'https://msiomedia.s3.us-east-2.amazonaws.com/portfolio/thumbnails';
     &--14 {
         background-image: url("#{$thumbs}/my-fit-site.jpg");
     }
+    &--15 {
+        background-image: url("#{$thumbs}/book-design-thumb.jpg");
+    }
 }
 
 
