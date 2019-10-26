@@ -97,6 +97,7 @@ class Portfolio extends Component {
                                             caption={cur.caption}
                                             link={cur.link}
                                             type={cur.type}
+                                            thumbnailImage={cur.thumbImg}
                                             visible={cur.visible}
                                         />
                                     </PortfolioChild>

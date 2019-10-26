@@ -1,6 +1,6 @@
 .header{
         position: fixed;
-        z-index: 5000;
+        z-index: 1000;
 }
 .header__desktop{
     @media only screen and (max-width: $tablet){
