@@ -1,7 +1,6 @@
 import React from 'react';
 import './_Resume.scss';
 import Con1080 from '../UI/Con/Con1080/Con1080';
-import axios from '../../axios/axios';
 import Spinner from '../UI/Spinner/Spinner';
 import Aux from '../Hoc/Aux/Aux';
 const Resume = (props) => {

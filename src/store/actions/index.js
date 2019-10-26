@@ -19,6 +19,7 @@ export {
 export {
     contactFormInit,
     contactFormSubmit,
+    contactFormSubmitSuccess,
     contactReset
 } from './contactFormActions';
 export {

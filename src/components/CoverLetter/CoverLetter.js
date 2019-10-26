@@ -1,7 +1,6 @@
 import React from 'react';
 import './_CoverLetter.scss';
 import Con1080 from '../UI/Con/Con';
-import Logo from '../UI/Logo/Logo';
 import contentBucket from '../../assets/links/contentBucket';
 import ContactInformation from '../ContactInformation/ContactInformation';
 import Aux from '../../components/Hoc/Aux/Aux';

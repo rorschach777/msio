@@ -2,7 +2,7 @@
 import * as actionTypes from './actionTypes';
 import axiosFBInstance from '../../axios/axios';
 import axios from 'axios';
-import { setUser, logoutTimer } from '../actions/mainActions';
+import { setUser } from '../actions/mainActions';
 import { checkElementValidity } from '../../validation/validation';
 import axiosFB from '../../axios/axios';
 
@@ -99,12 +99,6 @@ export const toggleAuthType = (e, authForm, prop) => {
 
 }
 
-const updateInputUI = (el, placeholder) => {
-
-    return {
-        type: actionTypes.AUTH_RESET_UI
-    }
-}
 const signInButtonClick = (authForm) => {
     return {
         type: actionTypes.AUTH_METHOD_TOGGLE,

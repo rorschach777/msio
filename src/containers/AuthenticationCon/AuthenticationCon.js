@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Authentication from '../../components/Login/Authentication/Authentication';
 import * as reduxActions from '../../store/actions/index';
-import axiosFB from '../../axios/axios'
 
 import {connect} from 'react-redux'
 class AuthenticationCon extends Component {
@@ -24,7 +23,6 @@ class AuthenticationCon extends Component {
             sender: 'mark.sweitzer@marksweitzer.io',
             subject: 'Mark Sweitzer | Sign Up Success',
         }
-        
         fetch(`https://sendgrid-webserver.herokuapp.com/login?recipient=${email.recipient}&firstName=${email.firstName}&companyName=${email.companyName}&sender=${email.sender}&topic=${email.subject}&html=${email.html}&key=${this.props.rdxAuthState.sgKey}`)
             .catch(err => console.error(err))
     }
@@ -36,8 +34,6 @@ class AuthenticationCon extends Component {
         return (
             <div>
                 <Authentication
-                    // accessKeyValid={this.props.rdxAccessKeyValid}
-                    // setAuthMethodButtons={this.setAuthMethodButtons}
                     rdxAuthState={this.props.rdxAuthState}
                     onChange={this.props.rdxAuth}
                     authForm={this.props.rdxAuthFormObj}

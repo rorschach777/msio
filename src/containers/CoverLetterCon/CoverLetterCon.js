@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CoverLetter from '../../components/CoverLetter/CoverLetter'
 import Aux from '../../components/Hoc/Aux/Aux';
-import axios from '../../axios/axios';
 import {connect} from 'react-redux';
 import * as reduxActions from '../../store/actions/index';
 import mainReducer from '../../store/reducers/mainReducer';

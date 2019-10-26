@@ -7,6 +7,24 @@ class ContactCon extends Component {
     componentDidMount(){
         this.props.coverLetterLoad(this.props.mainState.userInfo.accessKey)
     }
+
+    sendContactInfo=(e)=>{
+        e.preventDefault()
+        const email = {
+            recipient: 'mark.sweitzer@marksweitzer.io',
+            sender: `${this.props.contactState.form.emailAddress.value}`,
+            firstName: `${this.props.contactState.form.firstName.value}`,
+            lastName: `${this.props.contactState.form.lastName.value}`,
+            phone: `${this.props.contactState.form.phoneNumber.value}`, 
+            subjectLine: `${this.props.contactState.form.subjectLine.value}`, 
+            message: `${this.props.contactState.form.message.value}`, 
+ 
+        }
+        fetch(`https://sendgrid-webserver.herokuapp.com/contact?recipient=${email.recipient}&sender=${email.sender}&firstName=${email.firstName}&lastName=${email.lastName}&phone=${email.phone}&subjectLine=${email.subjectLine}&message=${email.message}&key=${this.props.rdxAuthState.sgKey}`)
+        .catch(err => console.error(err))
+
+     
+    }
  
     render() {
         return (
@@ -14,7 +32,8 @@ class ContactCon extends Component {
                 <Contact 
                 data={this.props.contactState}
                 coverLetter={this.props.coverLetter}
-                contactSubmit={this.props.contactSubmit}
+                contactSubmit={this.sendContactInfo}
+                contactSubmissionSuccess={this.props.contactSubmissionSuccess}
                 contactReset={this.props.contactReset}
                 mainState={this.props.mainState}
                 onChange={this.props.contact}
@@ -33,14 +52,16 @@ const mapStateToProps = state => {
         formValid: state.contact.formValid,
         formSubmitted: state.contact.formSubmitted,
         contactForm: state.contact.form,
-        coverLetter: state.coverLetter
+        coverLetter: state.coverLetter, 
+        rdxAuthState: state.authentication,
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         coverLetterLoad: (accessKey)=>dispatch(rdxActions.coverLetterLoad(accessKey)),
         contact: (e, contactForm)=>dispatch(rdxActions.contactFormInit(e, contactForm)),
-        contactSubmit: (e, mainState, contactState)=>dispatch(rdxActions.contactFormSubmit(e, mainState, contactState)), 
+        contactSubmissionSuccess: ()=>dispatch(rdxActions.contactFormSubmitSuccess()),
+        // contactSubmit: (e, mainState, contactState)=>dispatch(rdxActions.contactFormSubmit(e, mainState, contactState)), 
         contactReset: (e)=>dispatch(rdxActions.contactReset(e))
     } 
 }

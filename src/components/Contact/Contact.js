@@ -24,7 +24,15 @@ const Contact = (props) => {
             }
         )
     }
-
+    const contactDialog = () => {
+        return(
+            <LoginPanel>
+                <h1>Success!</h1>
+                <p>Your contact submission was successfully submitted</p>
+                <ButtonLg click={props.contactReset} text="Continue"/>
+            </LoginPanel>
+        )
+    }    
     const contactBody = () => {
         contactFormArr.sort((a, b)=>{
             return a.config.order - b.config.order
@@ -43,7 +51,6 @@ const Contact = (props) => {
                     <div className="Contact__form__left">
                         <div className="Contact__form__left__info">
                             {contactFormArr.map((cur, idx)=>{
-                           
                                 if (cur.config.inputConfig.type === 'input'){
                                     return (
                                     <Input
@@ -77,7 +84,7 @@ const Contact = (props) => {
                                 }
                             })}
                         </div>
-                        {props.formValid ? <ButtonLg click={(e)=>props.contactSubmit(e, props.mainState, props.data)} text="Submit"/> : null}
+                        {props.formValid ? <ButtonLg click={(e)=>{props.contactSubmit(e); props.contactSubmissionSuccess()}} text="Submit"/> : null}
                     </div>
                     <div className="Contact__form__right">
                         <h3>Send Me A Message </h3>
@@ -109,24 +116,11 @@ const Contact = (props) => {
         }
         
     }
-              
-      
-    const contactDialog = () => {
-        return(
-            <LoginPanel>
-                <h1>Success!</h1>
-                <p>Your contact submission was successfully submitted</p>
-                <ButtonLg click={props.contactReset} text="Continue"/>
-            </LoginPanel>
-        )
-    }                   
-  
     return (
         <Con1080>
             <div className="Contact">
                 {props.coverLetter.loaded ? contactBody() : <Spinner/>}
             </div>
-     
         </Con1080>
     );
 };

@@ -68,7 +68,7 @@ axiosInstanceFB.get('users.json')
 })
 }
 }
-const contactFormSubmitSuccess = () => {
+export const contactFormSubmitSuccess = () => {
     return {
         type: actionTypes.CONTACT_FORM_SUBMITTED
     }
