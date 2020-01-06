@@ -14,7 +14,10 @@ export {
     sendAuthForm,
     toggleError,
     authReset,
-    sgAccessKey
+    sgAccessKey,
+    resetPassword,
+    toggleResetPassword,
+    confirmPasswordChange
 } from './authenticationActions';
 export {
     contactFormInit,

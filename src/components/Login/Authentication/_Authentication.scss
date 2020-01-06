@@ -68,7 +68,14 @@
         input:last-child(){
             display: none !important;
         }
+    
 
+    }
+    &__reset-message{
+        text-align: center;
+        & > p {
+            color: $color-gray-5;
+        }
     }
   
     h1{
@@ -84,9 +91,17 @@
         }
      
     }
-    h6{
-        color: $color-2;
-        text-align: center;
+    .bottom-navigation{
+        @include center-block;
+        width: 100%;
     
+        display: flex;
+        justify-content:center;
+        & > h6{
+            color: $color-2;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
     }
+ 
 }

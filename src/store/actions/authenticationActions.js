@@ -76,6 +76,7 @@ const setAccessKeys = (accessKeys) => {
         }
     }
 }
+
 const setInput = (inputId, updatedAuthFormElement) => {
     return {
         type: actionTypes.AUTH_INPUT_UPDATED,
@@ -90,56 +91,72 @@ export const toggleAuthType = (e, authForm, prop) => {
 
     return dispatch => {
         if (prop === 'signIn') {
-            dispatch(signInButtonClick(authForm))
+            dispatch(signInButtonClick(authForm, 'signIn'))
         }
         else if (prop === 'signUp') {
-            dispatch(signUpButtonClick(authForm))
+            dispatch(signUpButtonClick(authForm, 'signUp'))
         }
     }
 
 }
 
-const signInButtonClick = (authForm) => {
+const signInButtonClick = (authForm, type) => {
+    let emailOrder, passwordOrder
+  
     return {
         type: actionTypes.AUTH_METHOD_TOGGLE,
         payload: {
             authForm: {
                 ...authForm,
-                accessKey: {
-                    ...authForm.accessKey,
-                    isValid: true,
-                    touched: true
-                },
+            
                 firstName: {
                     ...authForm.firstName,
                     isValid: true,
-                    touched: true
+                    touched: true,
+          
                 },
                 lastName: {
                     ...authForm.lastName,
                     isValid: true,
-                    touched: true
+                    touched: true,
+          
                 },
-                companyName: {
-                    ...authForm.companyName,
-                    isValid: true,
-                    touched: true
-                },
-                ///
-
                 emailAddress: {
                     ...authForm.emailAddress,
                     placeholder: 'Email Address',
                     isValid: true,
                     touched: false,
-                    value: null
+                    value: 'XYZ'
+                    // value: null
                 },
                 password: {
                     ...authForm.password,
                     placeholder: 'Password',
                     isValid: true,
                     touched: false,
-                    value: null
+          
+                    // value: null
+                },
+                companyName: {
+                    ...authForm.companyName,
+                    isValid: true,
+                    touched: true,
+          
+                },
+                accessKey: {
+                    ...authForm.accessKey,
+                    isValid: true,
+                    touched: true,
+                }, 
+                newPassword: {
+                    ...authForm.newPassword,
+                    isValid: true,
+                    touched: true,
+                },
+                confirmPassword: {
+                    ...authForm.confirmPassword,
+                    isValid: true,
+                    touched: true,
                 }
             },
             signUpSuccess: false,
@@ -158,6 +175,16 @@ const signUpButtonClick = (authForm) => {
                     ...authForm.accessKey,
                     isValid: true,
                     touched: false
+                },
+                newPassword: {
+                    ...authForm.newPassword,
+                    touched: true,
+                    isValid: true
+                }, 
+                confirmPassword: {
+                    ...authForm.confirmPassword,
+                    touched: true,
+                    isValid: true
                 }
             },
             signUpSuccess: false,
@@ -243,6 +270,7 @@ const signUp = (e, authState, userEmailPass) => {
                         let user = {
                             accessKey: authState.authForm.accessKey.value,
                             companyName: authState.authForm.companyName.value,
+                            emailAddress: authState.authForm.emailAddress.value,
                             firstName: authState.authForm.firstName.value,
                             lastName: authState.authForm.lastName.value,
                             userId: uId
@@ -347,7 +375,6 @@ const signIn = (e, userEmailPass) => {
                         dispatch(accessKeyValid(true))
                
                         dispatch(setUser(globals));
-
                     })
                     .catch(err => {
                         dispatch(toggleError(e, 'signUpError', false));
@@ -368,11 +395,11 @@ const inputUpdated = (e, authState) => {
         let authForm = {
             ...authState.authForm
         }
-        let inputId = e.target.id
-        let value = e.target.value
-        let isValid = checkElementValidity(value, authState.authForm[inputId].validation)
-        let errorVisible = !isValid
-        let touched = true
+        let inputId = e.target.id;
+        let value = e.target.value;
+        let isValid = checkElementValidity(value, authState.authForm[inputId].validation);
+        let errorVisible = !isValid;
+        let touched = true;
         let updatedAuthFormElement = {
             ...authForm[inputId],
             value: value,
@@ -409,11 +436,11 @@ export const checkTotalValidity = (updatedForm) => {
     // If the valid settings does not contain false, the form is valid  // data can be submitted. 
     return dispatch => {
         if (!validSettings.includes(false)) {
-            dispatch(setTotalValidity(true))
+            dispatch(setTotalValidity(true));
         }
         // otherwise...
         else {
-            dispatch(setTotalValidity(false))
+            dispatch(setTotalValidity(false));
         }
     }
 
@@ -425,5 +452,147 @@ const setTotalValidity = (val) => {
         payload: {
             bool: val
         }
+    }
+}
+export const toggleResetPassword = () => {
+    console.log('TOGGLE PASSWORD');
+    // Reset Email Code
+    return dispatch => {
+        dispatch(resetPasswordState());
+    }
+}
+export const resetPassword = (e, emailAddress) => {
+    return dispatch => {
+    e.preventDefault();
+    let eAddressList = [];
+    let userId = '';
+    let bool = false;
+    console.log('reset password');
+   
+    // Users
+    axiosFB.get('/users.json')
+    .then(response=>{
+       let dataArr = Object.values(response.data);
+       dataArr.forEach(cur=>{eAddressList.push({emailAddress: cur.emailAddress, userId: cur.userId})});
+       console.log('email address list:');
+       console.log(eAddressList);
+       return eAddressList;
+    })
+    .then(userList=>{
+        let user = {
+            emailExists: false,
+            emailAddress: '',
+            userId: ''
+        }
+        userList.forEach(cur=>{
+            if (cur.emailAddress === emailAddress ) {
+                user = {
+                    emailExists : true,
+                    emailAddress: cur.emailAddress,
+                    userId: cur.userId
+                }
+            }
+        });
+        console.log(`END OF PROMISE:`);
+        console.log(user)
+        return user;
+    })
+    .then(user=>{
+        dispatch(setEmailResetMessage(user.emailExists));
+        if (user.emailExists){
+            dispatch(displayPasswordResetFields());
+            dispatch(sendResetPasswordEmail(user));
+            // dispatch(setResetPasswordUser(user));
+        }
+    })
+        dispatch(sendResetEmail());
+    }
+}
+
+const sendResetPasswordEmail = (user) => {
+    return dispatch => {
+        let payload = {
+            email: user.emailAddress,
+            requestType: 'PASSWORD_RESET'
+        }
+        axiosFB.get('/fbKey.json')
+         .then((keyStr) => {
+             let key = keyStr.data
+             return key;
+         })
+         .then(key=>{
+             axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${key}`, payload)
+         })
+         .catch(err=>{
+             console.log(err);
+         })
+        dispatch(sendResetEmail());
+    }
+}
+// export const setResetPasswordUser = (user) => {
+//     return {
+//         type: actionTypes.AUTH_SET_RESET_PASSWORD_USER,
+//         payload: {
+//             user: {...user}
+//         }
+//     }
+// }
+export const confirmPasswordChange = (e, userId, newPassword) => {
+    // get the value of the confirm field. 
+   return dispatch => {
+    e.preventDefault();
+    let userEmailPass = {
+        idToken:userId,
+        password: newPassword,
+        returnSecureToken: true
+    }
+    axiosFB.get('/fbKey.json')
+    .then((keyStr) => {
+        let key = keyStr.data
+        return key
+    })
+
+    .then(key=>{
+        axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:update?key=${key}`, userEmailPass)
+    })
+    .then(response=>{
+        let globals = {
+            localId: response.data.localId,
+            token: response.data.idToken,
+            tokenExp: response.data.expiresIn
+        }
+        dispatch(accessKeyValid(true))
+        dispatch(setUser(globals));
+    })
+    .catch(err=>{
+    })
+    dispatch(resetPasswordState())
+} 
+
+
+}
+export const displayPasswordResetFields = () => {
+    return {
+       type: actionTypes.AUTH_SHOW_RESET_PASSWORD_FIELDS
+    }
+}
+export const setEmailResetMessage = (val) => {
+    console.log(`set email RESET MESSAGE:  ${val}`)
+    return {
+        type: actionTypes.AUTH_SET_RESET_PASSWORD_MESSAGE,
+        payload: {
+            resetPasswordEmailSent: val, 
+            showResetMessage: true
+        }
+    }
+}
+const sendResetEmail = () => {
+    return dispatch => {
+        dispatch(resetPasswordState());
+    }
+}
+const resetPasswordState = () => {
+    return {
+        type: actionTypes.AUTH_RESET_PASSWORD
     }
 }

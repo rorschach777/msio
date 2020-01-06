@@ -10,14 +10,11 @@ import axiosFBInstance from '../../axios/axios';
 // REDUX
 import {connect} from 'react-redux'
 import * as reduxActions from '../../store/actions/index';
-
 // CONTAINERS 
 import SkillsCon from '../../containers/SkillsCon/SkillsCon';
 import ResumeCon from '../../containers/ResumeCon/ResumeCon';
 import AuthenticationCon from '../../containers/AuthenticationCon/AuthenticationCon';
 import ContactCon from '../../containers/ContactCon/ContactCon';
-
-
 // COMPONENTS 
 import Login from '../../components/Login/Login';
 import LoginPanel from '../../components/Login/LoginPanel/LoginPanel';
@@ -59,7 +56,6 @@ class Main extends Component {
             loginError: !prevState.loginError
         }))
     }
-
     setBkg = () => {
         let el = document.getElementById('main-container')
         el.style.animationName = this.props.background

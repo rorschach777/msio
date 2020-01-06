@@ -8,7 +8,7 @@ const initialState = {
     authForm: {
         firstName: {
             placeholder: 'First Name',
-            order: 1,
+            order: 0,
             inputConfig: {
                 type: 'text', 
                 fieldLayoutClass: 'input-layout input-layout--half',
@@ -17,6 +17,8 @@ const initialState = {
                 label: null,
                 signInVisible: false, 
                 signUpVisible: true,
+                passwordReset: false,
+                passwordConfirmation: false
             },
             validation: {
                 required: true,
@@ -25,11 +27,11 @@ const initialState = {
             },
             isValid: true,
             touched: false,
-            value: ''
+            value: null
         },
         lastName: {
             placeholder: 'Last Name',
-            order: 2,
+            order: 1,
             inputConfig: {
                 type: 'text', 
                 fieldLayoutClass: 'input-layout input-layout--half',
@@ -38,6 +40,8 @@ const initialState = {
                 label: null,
                 signInVisible: false, 
                 signUpVisible: true,
+                passwordReset: false,
+                passwordConfirmation: false
             },
             validation: {
                 required: true,
@@ -46,11 +50,11 @@ const initialState = {
             },
             isValid: true,
             touched: false,
-            value: ''
+            value: null
         },
         emailAddress: {
             placeholder: 'Email Address',
-            order: 3,
+            order: 2,
             inputConfig: {
                 type: 'text', 
                 fieldLayoutClass: 'input-layout input-layout--full',
@@ -59,19 +63,20 @@ const initialState = {
                 label: null,
                 signInVisible: true, 
                 signUpVisible: true,
+                passwordReset: true,
+                passwordConfirmation: false
             },
             validation: {
                 required: true,
                 email: true,
-
             },
             isValid: true,
             touched: false,
-            value: ''
+            value: null
         },
         password: {
             placeholder: 'Password',
-            order: 4,
+            order: 3,
             inputConfig: {
                 type: 'text', 
                 fieldLayoutClass: 'input-layout input-layout--full',
@@ -80,6 +85,8 @@ const initialState = {
                 label: null,
                 signInVisible: true, 
                 signUpVisible: true,
+                passwordReset: false,
+                passwordConfirmation: false
             },
             validation: {
                 required: true,
@@ -87,10 +94,33 @@ const initialState = {
             },
             isValid: true,
             touched: false,
-            value: ''
+            value: null
         },
         companyName: {
             placeholder: 'Company Name',
+            order: 4, 
+            inputConfig: {
+                type: 'text', 
+                fieldLayoutClass: 'input-layout input-layout--half', 
+                errorMessage: 'Sorry, this is an invalid length',
+                errorVisible: false,
+                label: null,
+                signInVisible: false, 
+                signUpVisible: true,
+                passwordReset: false,
+                passwordConfirmation: false
+            },
+            validation: {
+                required: true,
+                minLength: 1,
+                maxLength: 20
+            },
+            isValid: true,
+            touched: false,
+            value: null
+        },
+        accessKey: {
+            placeholder: 'Access Key',
             order: 5, 
             inputConfig: {
                 type: 'text', 
@@ -100,27 +130,8 @@ const initialState = {
                 label: null,
                 signInVisible: false, 
                 signUpVisible: true,
-            },
-            validation: {
-                required: true,
-                minLength: 1,
-                maxLength: 20
-            },
-            isValid: true,
-            touched: false,
-            value: ''
-        },
-        accessKey: {
-            placeholder: 'Access Key',
-            order: 6, 
-            inputConfig: {
-                type: 'text', 
-                fieldLayoutClass: 'input-layout input-layout--half', 
-                errorMessage: 'Sorry, this is an invalid length',
-                errorVisible: false,
-                label: null,
-                signInVisible: false, 
-                signUpVisible: true,
+                passwordReset: false,
+                passwordConfirmation: false
             },
             validation: {
                 required: true,
@@ -129,12 +140,65 @@ const initialState = {
             },
             isValid: true,
             touched: false,
-            value: ''
-        }
+            value: null
+        },
+        newPassword: {
+            placeholder: 'New Password',
+            order: 6,
+            inputConfig: {
+                type: 'text', 
+                fieldLayoutClass: 'input-layout input-layout--full',
+                errorMessage: 'Must include 1 lower, 1 upper, 1 numeral, and 1 special character',
+                errorVisible: false, 
+                label: null,
+                signInVisible: false, 
+                signUpVisible: false,
+                passwordReset: false,
+                passwordConfirmation: true
+            },
+            validation: {
+                required: true,
+                password: true,
+            },
+            isValid: true,
+            touched: false,
+            value: null
+        },
+        confirmPassword: {
+            placeholder: 'Confirm Password',
+            order: 7,
+            inputConfig: {
+                type: 'text', 
+                fieldLayoutClass: 'input-layout input-layout--full',
+                errorMessage: 'Your passwords are not valid, or do not match',
+                errorVisible: false, 
+                label: null,
+                signInVisible: false, 
+                signUpVisible: false,
+                passwordReset: false,
+                passwordConfirmation: true
+            },
+            validation: {
+                required: true,
+                passwordConfirm: true,
+            },
+            isValid: true,
+            touched: false,
+            value: null
+        },
     },
     // Authentication Method
     signIn: false,
     signUp: true,
+    resetPassword: false,
+    resetPasswordConfirmation: false,
+    resetPasswordMessageShow: false,
+    resetPasswordEmailSent: false, 
+    resetPasswordUser: {
+        emailExists: false,
+        emailAddress: '',
+        userId: '',
+    },
     // Authentication Status
     signUpSuccess: false, 
     signUpError: false,
@@ -180,12 +244,10 @@ const authenticationReducer = (state = initialState, action) => {
         }
         // INPUT UPDATED
         case actionTypes.AUTH_INPUT_UPDATED:
-       
             return{
                 ...state,
                 authForm: {
                   ...state.authForm,
-               
                   [action.payload.id]: {
                       ...state.authForm[action.payload.id],
                       ...action.payload.updatedAuthFormElement
@@ -224,7 +286,8 @@ const authenticationReducer = (state = initialState, action) => {
             },
             signUpSuccess: action.payload.signUpSuccess,
             signIn: action.payload.signIn,
-            signUp: action.payload.signUp
+            signUp: action.payload.signUp, 
+            resetPassword: false,
 
         }
         // SIGNIN RESET
@@ -253,6 +316,27 @@ const authenticationReducer = (state = initialState, action) => {
         case actionTypes.AUTH_RESET_UI:
             return {
                 ...state
+            }
+        case actionTypes.AUTH_RESET_PASSWORD:
+            return{
+                ...state,
+                signIn: false, 
+                signUp: false,
+                resetPassword: true
+            }
+        case actionTypes.AUTH_SET_RESET_PASSWORD_MESSAGE:
+            return{
+                ...state,
+                resetPasswordEmailSent: action.payload.resetPasswordEmailSent,
+                resetPasswordMessageShow: action.payload.showResetMessage
+            }
+  
+        case actionTypes.AUTH_SET_RESET_PASSWORD_USER:
+            return {
+                ...state,
+                resetPasswordUser: {
+                    ...action.payload.user
+                }
             }
         default: 
             return state

@@ -11,6 +11,12 @@ export const checkElementValidity = (value, validationRules) => {
         const regExPassword = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,15}$/;
         isValid = regExPassword.test(value)
     }
+    if (validationRules.passwordConfirm){
+        const regExPassword = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,15}$/;
+        let newPasswordVal = document.getElementById('newPassword').value;
+        console.log(`${value} : ${newPasswordVal}`);
+        isValid = regExPassword.test(value) && value === newPasswordVal
+    }
     if (validationRules.minLength) {
         isValid = value.length >= validationRules.minLength
     }
@@ -23,7 +29,6 @@ export const checkElementValidity = (value, validationRules) => {
     }
     return isValid
 }
-
 export const checkTotalValidity = (containerState, reducerAction) => {
     let authForm = {
         ...containerState.form

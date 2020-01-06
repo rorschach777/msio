@@ -50,6 +50,9 @@ class AuthenticationCon extends Component {
                     tokenExpired={this.props.tokenExpired}
                     toggleMainProp={this.props.toggleMainProp}
                     signUpSuccessEmail={this.signUpSuccessEmail}
+                    toggleResetPassword={this.props.rdxToggleReset}
+                    sendResetPassword={this.props.rdxSendResetPassword}
+                    confirmResetPassword={this.props.rdxConfirmPasswordChange}
                 />
             </div>
         );
@@ -58,6 +61,7 @@ class AuthenticationCon extends Component {
 const mapStateToProps = state => {
     return {
         rdxAuthState: state.authentication,
+
         rdxFormElementsArr: state.authentication.formElementsArr,
         rdxAuthFormObj: state.authentication.authForm,
         rdxAccessKeyValid: state.authentication.accessKeyValid,
@@ -68,7 +72,6 @@ const mapStateToProps = state => {
         rdxSignIn: state.authentication.signIn,
         rdxSignUpError: state.authentication.signUpError,
         rdxSignUpSuccess: state.authentication.signUpSuccess,
-
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -81,7 +84,9 @@ const mapDispatchToProps = dispatch => {
         sendAuthForm: (e, authState) => dispatch(reduxActions.sendAuthForm(e, authState)),
         rdxToggleError:(e, errorTarget, val)=> dispatch(reduxActions.toggleError(e, errorTarget, val)),
         rdxAuthReset: ()=>dispatch(reduxActions.authReset()),
-      
+        rdxToggleReset: ()=>dispatch(reduxActions.toggleResetPassword()),
+        rdxSendResetPassword: (e, email)=>dispatch(reduxActions.resetPassword(e, email)),
+        rdxConfirmPasswordChange: (e, user, confirmPassword)=>dispatch(reduxActions.confirmPasswordChange(e, user, confirmPassword))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AuthenticationCon);
