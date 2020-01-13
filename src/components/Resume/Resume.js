@@ -45,18 +45,18 @@ const Resume = (props) => {
                             </h3>
                             <ul>
                                 {languagesTop.map((cur, idx)=>{
-                                    return <li>{cur}</li>
+                                    return <li key={`languagesTop-${idx}`}>{cur}</li>
                                 })}
                                 <li>
                                     Javascript
                                     <ul>
                                     {languagesMid.map((cur, idx)=>{
-                                    return <li>{cur}</li>
+                                    return <li key={`languagesMid-${idx}`}>{cur}</li>
                                 })}
                                     </ul>
                                 </li>
                                 {languagesBot.map((cur, idx)=>{
-                                    return <li>{cur}</li>
+                                    return <li key={`languagesBot-${idx}`}>{cur}</li>
                                 })}
                             </ul>
                         </section>
@@ -80,14 +80,14 @@ const Resume = (props) => {
                         {
                             props.resumeData.professionalExperience.map((cur, idx)=>{
                                 return (
-                                    <section>
+                                    <section key={`experience-${idx}`}>
                                      
                                         <h4>{cur.name}</h4>
                                         <h5>{cur.title}</h5>
                                         <h6>{cur.date}</h6>
                                         <ul>
                                             {cur.duties.map((cur, idx)=>{
-                                                return <li>{cur}</li>
+                                                return <li key={`duties-${idx}`}>{cur}</li>
                                             })}
                                         </ul>
                                     </section>

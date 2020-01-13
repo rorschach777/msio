@@ -99,7 +99,7 @@ class Header extends Component {
             <header>
                 <div className="header header__desktop">
                     <FadeHeader className="header__oncanvas" pose={this.state.showStickyMenu ? 'show' : 'hide'}>
-                        <img src={logoImg} type="button" type="button" uk-toggle="target: #offcanvas-push" alt="logo" />
+                        <img src={logoImg} type="button" uk-toggle="target: #offcanvas-push" alt="logo" />
                         <span>MARKSWEITZER</span>
                     </FadeHeader>
                     <div id="offcanvas-push" uk-offcanvas="mode: push;" >
