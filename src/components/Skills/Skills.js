@@ -134,7 +134,7 @@ const Skills = (props) => {
                         <span className="skill__percentage">90%</span>
                     </div>
                     <div  className="skill">
-                        <span className="skill__label">Acessing and Securing Data</span>
+                        <span className="skill__label">Accessing and Securing Data</span>
                         <Skill  pose={!props.loadProgress ? 'start' : 'finish'} propVal={'80%'}className="skill--85"></Skill>
                         <span className="skill__percentage">85%</span>
                     </div>

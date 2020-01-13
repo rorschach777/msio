@@ -5,15 +5,15 @@ import logoImg from '../../../assets/images/logo-light.svg';
 import {NavLink} from 'react-router-dom';
 import './_Header.scss';
 import posed from 'react-pose';
-import Avatar from '../Avatar/Avatar';
+// import Avatar from '../Avatar/Avatar';
 const FadeHeader = posed.div({
     show: {
         applyAtStart: { display: 'block' },
         opacity: 1
     },
     hide: {
-        applyAtEnd: { display: 'none' },
-        opacity: 0
+        // applyAtEnd: { display: 'none' },
+        opacity: 1
     }
 })
 const RotatingIcon = posed.span({
@@ -60,8 +60,7 @@ class Header extends Component {
             // every time after that the class list is = 2 when open
             this.setState(prevState => ({
                 showStickyMenu: false,
-   
-            }))
+               }))
         }
         // Panel not shown
         else if( bodyList.length === 1 ) {
@@ -84,7 +83,6 @@ class Header extends Component {
         }
      
     }
-
     shouldComponentUpdate(nextProps, nextState){
         if (this.state !== nextState){
             return true

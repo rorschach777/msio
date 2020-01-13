@@ -46,6 +46,7 @@ class Main extends Component {
     }
 
     toggleHeader=()=>{
+        console.log('Toggling Header')
         this.setState(prevState=>({
             headerCollapsed: !prevState.headerCollapsed,
             solidBackground: !prevState.solidBackground
@@ -98,7 +99,6 @@ class Main extends Component {
                 }
             }), this.logoutTimer(updatedUserObj.tokenExp))
         })
-        // create an object, and replace it in the state. 
     }
     logoutTimer = (duration) => {
         setTimeout(()=>{

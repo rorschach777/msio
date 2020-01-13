@@ -140,7 +140,7 @@ const initialState = {
             },
             isValid: true,
             touched: false,
-            value: null
+            value: null,
         },
         newPassword: {
             placeholder: 'New Password',
