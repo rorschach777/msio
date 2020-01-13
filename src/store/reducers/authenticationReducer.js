@@ -161,7 +161,7 @@ const initialState = {
                 password: true,
             },
             isValid: true,
-            touched: false,
+            touched: true,
             value: null
         },
         confirmPassword: {
@@ -183,7 +183,7 @@ const initialState = {
                 passwordConfirm: true,
             },
             isValid: true,
-            touched: false,
+            touched: true,
             value: null
         },
     },
@@ -264,6 +264,7 @@ const authenticationReducer = (state = initialState, action) => {
         case actionTypes.AUTH_SIGNUP:
         return {
             ...state
+         
         }
         // SIGNUP SUCCESS
         case actionTypes.AUTH_SIGNUP_SUCCESS:
@@ -303,7 +304,20 @@ const authenticationReducer = (state = initialState, action) => {
                     password: {
                         ...state.authForm.password,
                         value: ''
+                    },
+                    newPassword: {
+                        ...state.authForm.newPassword,
+                        isValid: true,
+                        touched: true,
+                        value: '',
+                    },
+                    confirmPassword: {
+                        ...state.authForm.confirmPassword,
+                        isValid: true,
+                        touched: true,
+                        value: '',
                     }
+            
                 }
             }
          // AUTH TOGGLE ERROR
